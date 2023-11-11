@@ -1,14 +1,11 @@
-"use client"
-
-import { Input, } from '@nextui-org/react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
+import { Button } from '@nextui-org/react'
 import classNames from "classnames"
 
-import { SubmitButton } from './_components/login-btn'
 
-
-export default function page() {
+export default function LoginPage() {
   return (
     <section className='flex flex-row items-center justify-around py-12'>
       <Image
@@ -18,14 +15,10 @@ export default function page() {
         width={400}
       />
 
-      <div>
-        <form action="" className={classNames({
-          "space-y-5": true,
-        })}>
-          <Input type="email" label="Email" />
-          <Input type="password" label="Password" />
-          <SubmitButton />
-        </form>
+      <div className='space-y-4'>
+        <Button as={Link} variant='bordered' color='primary' href='/api/auth/signin'>
+          Signin with Github
+        </Button>
       </div>
     </section>
   )

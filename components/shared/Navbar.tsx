@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react"
+import classNames from "classnames";
 import {
   Navbar as Nav,
   NavbarBrand,
@@ -9,7 +11,6 @@ import {
   NavbarItem,
   Button
 } from "@nextui-org/react";
-import classNames from "classnames";
 
 import { ThemeSwitcher } from "../themes/ThemeSwitcher";
 import { Logo } from "./Logo";
@@ -17,6 +18,7 @@ import { Logo } from "./Logo";
 
 export default function Navbar() {
   const pathName = usePathname();
+  const { data, status } = useSession();
 
   const navLinks = [
     {
@@ -28,8 +30,8 @@ export default function Navbar() {
       href: "/login"
     },
     {
-      label: "Signup",
-      href: "/signup"
+      label: "Dashboard",
+      href: "/dashboard"
     },
   ]
 

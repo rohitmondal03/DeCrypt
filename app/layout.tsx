@@ -5,6 +5,7 @@ import { NextUIProviders } from '@/components/themes/NextUIProvider'
 import Navbar from '@/components/shared/Navbar'
 import { inter, monsterrat } from '@/components/font/fonts'
 import './globals.css'
+import AuthSessionWrapper from '@/components/shared/AuthSessionProvider'
 
 
 export const metadata: Metadata = {
@@ -22,8 +23,10 @@ export default function RootLayout({ children }: TProps) {
     <html lang="en">
       <body className={inter.className}>
         <NextUIProviders>
-          <Navbar />
-          <main>{children}</main>
+          <AuthSessionWrapper>
+            <Navbar />
+            <main>{children}</main>
+          </AuthSessionWrapper>
         </NextUIProviders>
       </body>
     </html>
