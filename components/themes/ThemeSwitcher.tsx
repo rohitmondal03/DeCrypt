@@ -1,7 +1,10 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react"
+import {
+  Button,
+  Dropdown, DropdownItem, DropdownMenu, DropdownTrigger
+} from "@nextui-org/react"
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
@@ -22,9 +25,9 @@ export function ThemeSwitcher() {
       <DropdownTrigger>
         <Button variant="bordered" isIconOnly>
           {theme === "light" ? (
-            <Sun />
+            <Sun className="scale-90" />
           ) : (
-            <Moon />
+            <Moon className="scale-90" />
           )}
         </Button>
       </DropdownTrigger>

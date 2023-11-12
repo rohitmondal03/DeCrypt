@@ -108,7 +108,7 @@ export default function Navbar() {
                 <ModalBody>
                   <p className="text-xl font-bold">
                     Sign Out&nbsp;
-                    <span className="text-rose-500">{userDetails?.name}</span>
+                    <span className="text-rose-500">&apos;{userDetails?.name}&apos;</span>
                     ?
                   </p>
                 </ModalBody>

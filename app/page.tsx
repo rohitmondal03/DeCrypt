@@ -7,14 +7,15 @@ import { monsterrat } from "@/components/font/fonts";
 export default function HomePage() {
   return (
     <>
-      <section className={`py-12 px-20 flex flex-row items-center justify-between gap-32 h-[80vh]`}>
+      <section className={classNames({
+        'py-12 px-20 flex flex-row items-center justify-between gap-32 h-[80vh]': true,
+      })}>
         <div className="text-center space-y-14">
           <h1 className={classNames(`${monsterrat.className}`, {
             "text-5xl font-bold text-zinc-500 dark:text-zinc-400 leading-normal": true,
-          })}
-          >
+          })}>
             Welcome to &nbsp;
-            <span className={`text-black dark:text-sky-400 text-6xl underline`}>DeCrypt</span>,
+            <span className={`text-black dark:text-rose-600 text-6xl underline`}>DeCrypt</span>,
             the secure password manager.
           </h1>
 
