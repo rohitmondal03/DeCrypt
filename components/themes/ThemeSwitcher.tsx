@@ -15,7 +15,7 @@ export function ThemeSwitcher() {
 
   useEffect(() => {
     setMounted(true)
-  }, [])
+  })
 
   if (!mounted) return null
 
