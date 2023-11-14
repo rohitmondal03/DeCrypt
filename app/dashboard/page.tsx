@@ -5,7 +5,7 @@ import { Button } from "@nextui-org/react";
 import { monsterrat } from "@/components/font/fonts";
 import { getAuthSession } from "@/utils/getServerAuthSession"
 import { prisma } from "@/utils/prisma";
-import Passwords from "./_components/Passwords";
+import UsersList from "./_components/UsersPasswordList";
 
 
 export default async function DashboardPage() {
@@ -41,7 +41,7 @@ export default async function DashboardPage() {
       </h1>
 
       {getUsersPasswords.length > 0 ? (
-        <Passwords passwordList={getUsersPasswords} />
+        <UsersList passwordList={getUsersPasswords} />
       ) : (
         <div className="mx-auto w-full text-center space-y-2">
           <p className={classNames({

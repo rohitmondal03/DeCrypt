@@ -4,11 +4,11 @@ import { prisma } from "@/utils/prisma";
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  const { id } = body;
+  const { slug } = body;
 
   const getPassword = await prisma.password.findFirst({
     where: {
-      id: id,
+      id: slug,
     },
     select: {
       label: true,

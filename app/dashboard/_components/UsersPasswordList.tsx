@@ -1,10 +1,10 @@
 "use client"
 
+import Link from "next/link";
 import { Password } from "@prisma/client";
 import classNames from "classnames";
 import { MoveRight } from "lucide-react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 
 type TProps = {
@@ -21,7 +21,7 @@ const fadeInAnimationVariants = {
     x: 0,
     transition: {
       duration: .25,
-      delay: 0.4 * idx,
+      delay: 0.2 * idx,
       type: 'spring',
       stiffness: 100,
     }
@@ -29,7 +29,7 @@ const fadeInAnimationVariants = {
 }
 
 
-export default function SingleUsersPage({ passwordList }: TProps) {
+export default function UsersList({ passwordList }: TProps) {
   return (
     <div className={classNames({
       "flex flex-col gap-y-4 items-center justify-center": true,
