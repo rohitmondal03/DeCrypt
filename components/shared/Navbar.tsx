@@ -2,38 +2,32 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import { useSession } from "next-auth/react"
 import classNames from "classnames";
 import {
+  Button,
   Avatar,
-  Modal, ModalBody, ModalContent, ModalFooter, useDisclosure
-} from "@nextui-org/react";
-import {
-  Navbar as Nav,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Button
+  Navbar as Nav, NavbarBrand, NavbarContent, NavbarItem,
+  Modal, ModalBody, ModalContent, ModalFooter, useDisclosure,
 } from "@nextui-org/react";
 
-import { ThemeSwitcher } from "../themes/ThemeSwitcher";
+import { ThemeSwitcher } from "@/components/themes/ThemeSwitcher";
+import { SignOutButton } from "@/components/utility-buttons/signout-button";
 import { Logo } from "./Logo";
-import { useTheme } from "next-themes";
-import { Session } from "next-auth";
 
-
-let userDetails: Session["user"] | undefined;
 
 export default function Navbar() {
   const pathName = usePathname();
-  const { data, status } = useSession();
+  const { data: session, status } = useSession();
   const { theme } = useTheme();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+
   // get user's details
-  userDetails = data?.user;
+  let userDetails = session?.user;
 
-
+  // navbar links
   const navLinks = [
     {
       label: "Home",
@@ -47,7 +41,12 @@ export default function Navbar() {
 
 
   return (
-    <Nav shouldHideOnScroll className="py-8 border-b-2 border-zinc-400 dark:border-zinc-700">
+    <Nav
+      shouldHideOnScroll
+      className={classNames({
+        "py-8 border-b-2 border-zinc-400 dark:border-zinc-800": true,
+      })}
+    >
       <NavbarBrand>
         <Logo />
       </NavbarBrand>
@@ -62,6 +61,7 @@ export default function Navbar() {
               variant={pathName == link.href ? "flat" : "faded"}
               className={classNames({
                 "font-bold": pathName === link.href,
+                "border-2 border-zinc-700 dark:border-zinc-500": pathName !== link.href,
                 "scale-105": true
               })}
             >
@@ -73,12 +73,13 @@ export default function Navbar() {
           <NavbarItem>
             <Button
               as={Link}
-              color={pathName === "/signin" ? "warning" : "default"}
-              href={"/signin"}
-              variant={pathName == "/signin" ? "flat" : "faded"}
+              color={pathName === "/sign-in" ? "warning" : "default"}
+              href={"/sign-in"}
+              variant={pathName == "/sign-in" ? "flat" : "faded"}
               className={classNames({
-                "font-bold": pathName === "/signin",
-                "scale-105": true
+                "font-bold": pathName === "/sign-in",
+                "border-2 border-zinc-700 dark:border-zinc-500": pathName !== "/sign-in",
+                "scale-105": true,
               })}
             >
               Sign In
@@ -108,20 +109,14 @@ export default function Navbar() {
                 <ModalBody>
                   <p className="text-xl font-bold">
                     Sign Out&nbsp;
-                    <span className="text-rose-500">&apos;{userDetails?.name}&apos;</span>
+                    <span className="text-rose-500">
+                      &apos;{userDetails?.name}&apos;
+                    </span>
                     ?
                   </p>
                 </ModalBody>
                 <ModalFooter>
-                  <Link href={"/api/auth/signout"}>
-                    <Button
-                      variant="ghost"
-                      color="warning"
-                      className="font-bold dark:font-normal hover:scale-105 transition"
-                    >
-                      Sign Out
-                    </Button>
-                  </Link>
+                  <SignOutButton />
                 </ModalFooter>
               </ModalContent>
             </Modal>

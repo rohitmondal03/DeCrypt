@@ -15,7 +15,7 @@ export default function HomePage() {
             "text-5xl font-bold text-zinc-500 dark:text-zinc-400 leading-normal": true,
           })}>
             Welcome to &nbsp;
-            <span className={`text-black dark:text-rose-600 text-6xl underline`}>DeCrypt</span>,
+            <span className={`text-black dark:text-blue-500 text-6xl underline`}>DeCrypt</span>,
             the secure password manager.
           </h1>
 
@@ -29,6 +29,8 @@ export default function HomePage() {
           alt="image"
           height={500}
           width={500}
+          blurDataURL='/assets/main-illustration.svg'
+          placeholder='blur'
         />
       </section >
     </>

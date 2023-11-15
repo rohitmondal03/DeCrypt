@@ -11,7 +11,10 @@ import {
 import classNames from "classnames";
 import { Password } from "@prisma/client";
 
+import { monsterrat } from "@/components/font/fonts";
+import LoadingCard from "@/components/loading/loading-card";
 import { decryptText } from "@/utils/decrypt";
+
 
 
 export default function SinglePasswordPage() {
@@ -20,14 +23,6 @@ export default function SinglePasswordPage() {
   const { status } = useSession();
   const [passwordData, setPasswordData] = useState<Password>();
   const [loading, setloading] = useState(false)
-
-
-  // if not signed in, redirect !!
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/api/auth/signin")
-    }
-  }, [])
 
 
   // fetch password data from slug
@@ -53,8 +48,12 @@ export default function SinglePasswordPage() {
   }, [])
 
 
+  if (loading) {
+    return (
+      <LoadingCard />
+    )
+  }
 
-  if (loading) return <>loading</>
 
   return (
     <section className={classNames({
@@ -64,7 +63,11 @@ export default function SinglePasswordPage() {
         "w-[30rem] text-white bg-black dark:text-black dark:bg-white": true,
       })}>
         <CardHeader>
-          <h1 className="text-3xl text-center">{passwordData?.label}</h1>
+          <h1 className={classNames(`${monsterrat.className}`,{
+            "text-3xl text-center": true
+          })}>
+            {passwordData?.label}
+          </h1>
         </CardHeader>
 
         <Divider className="bg-white dark:bg-zinc-800" />

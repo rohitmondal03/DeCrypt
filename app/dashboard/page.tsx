@@ -11,9 +11,6 @@ import UsersList from "./_components/UsersPasswordList";
 export default async function DashboardPage() {
   const session = await getAuthSession();
 
-  // if no session, then redirect
-  session ? null : redirect("/api/auth/signin");
-
   // get user details.
   const userDetails = session?.user;
 

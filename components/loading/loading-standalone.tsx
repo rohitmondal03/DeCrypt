@@ -1,9 +1,12 @@
 import { Skeleton } from "@nextui-org/react";
+import classNames from "classnames";
 
 
 export default function LoadingStandalone() {
   return (
-    <div className="max-w-[300px] h-[80vh] w-full flex items-center justify-center gap-3">
+    <div className={classNames({
+      "max-w-[300px] mx-auto h-[80vh] w-full flex items-center justify-center gap-3": true,
+    })}>
       <div>
         <Skeleton className="flex rounded-full w-12 h-12" />
       </div>

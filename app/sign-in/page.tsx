@@ -1,22 +1,26 @@
-"use client"
-
-import { useTheme } from 'next-themes'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@nextui-org/react';
+import { redirect } from "next/navigation";
 import classNames from 'classnames'
 
+import { getAuthSession } from "@/utils/getServerAuthSession";
+import { SignInButtonsGroup } from '@/components/utility-buttons/signin-buttons-group';
 
-export default function SignInPage() {
-  const { theme } = useTheme();
 
-  return(
+export default async function Page() {
+  const session = await getAuthSession();
+
+  // don't allow logged users to access this route
+  session ? redirect("/dashboard") : null;
+
+  return (
     <section className='flex flex-row items-center justify-around h-[80vh]'>
       <Image
         src={"/assets/login.svg"}
         alt=''
         height={400}
         width={400}
+        blurDataURL='/assets/login.svg'
+        placeholder='blur'
       />
 
       <div className='space-y-10'>
@@ -30,16 +34,7 @@ export default function SignInPage() {
           <p>Click on SignIn button and continue to DeCrypt.</p>
         </div>
 
-        {/* <Button
-          as={Link}
-          variant='bordered'
-          color={theme === "dark" ? "success" : "danger"}
-          href='/api/auth/signin'
-          className='font-bold dark:font-normal hover:scale-110 transition ease-out'
-        >
-          Signin to DeCrypt
-        </Button> */}
-        <button>Signin to decrypt</button>
+        <SignInButtonsGroup />
       </div>
     </section>
   )

@@ -7,6 +7,7 @@ import {
 } from "@nextui-org/react"
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
+import classNames from "classnames";
 
 
 export function ThemeSwitcher() {
@@ -15,7 +16,7 @@ export function ThemeSwitcher() {
 
   useEffect(() => {
     setMounted(true)
-  })
+  }, [])
 
   if (!mounted) return null
 
@@ -23,7 +24,11 @@ export function ThemeSwitcher() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button variant="bordered" isIconOnly>
+        <Button variant="bordered" isIconOnly
+          className={classNames({
+            "border-zinc-400 hover:rotate-90 dark:hover:-rotate-90": true,
+          })}
+        >
           {theme === "light" ? (
             <Sun className="scale-90" />
           ) : (
