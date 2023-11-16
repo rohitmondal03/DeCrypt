@@ -7,10 +7,6 @@ import { MoveRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 
-type TProps = {
-  passwordList: Password[]
-}
-
 const fadeInAnimationVariants = {
   initial: {
     opacity: 0,
@@ -21,7 +17,7 @@ const fadeInAnimationVariants = {
     x: 0,
     transition: {
       duration: .25,
-      delay: 0.2 * idx,
+      delay: 0.1 * idx,
       type: 'spring',
       stiffness: 100,
     }
@@ -29,7 +25,11 @@ const fadeInAnimationVariants = {
 }
 
 
-export default function UsersList({ passwordList }: TProps) {
+type TProps = {
+  passwordList: Password[]
+}
+
+export default function UsersPasswordsList({ passwordList }: TProps) {
   return (
     <div className={classNames({
       "flex flex-col gap-y-4 items-center justify-center": true,
@@ -38,8 +38,8 @@ export default function UsersList({ passwordList }: TProps) {
         <motion.div
           key={data.id}
           className={classNames({
-            "flex flex-row items-center justify-around border-2": true,
-            "border-zinc-400 rounded-xl py-4 px-2 w-[60vw]": true,
+            "flex flex-row items-center justify-around text-black dark:text-zinc-300": true,
+            "border-2 border-zinc-700 dark:border-zinc-400 rounded-xl py-4 px-2 w-[40vw]": true,
           })}
           variants={fadeInAnimationVariants}
           initial={"initial"}
@@ -48,7 +48,12 @@ export default function UsersList({ passwordList }: TProps) {
         >
           <p>{idx + 1 + "."}</p>
           <p className="text-xl">{data.label.slice(0, 10) + "..."}</p>
-          <p>{data.encryptedPassword.slice(0, 50) + "..."}</p>
+          <p>
+            {data.encryptedPassword.length > 50 ?
+              data.encryptedPassword.slice(0, 30) + "..." :
+              data.encryptedPassword
+            }
+          </p>
 
           <Link href={`/dashboard/${data.id}`}>
             <MoveRight className={classNames({

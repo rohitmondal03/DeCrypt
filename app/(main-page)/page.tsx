@@ -12,7 +12,7 @@ export default function HomePage() {
       })}>
         <div className="text-center space-y-14">
           <h1 className={classNames(`${monsterrat.className}`, {
-            "text-5xl font-bold text-zinc-500 dark:text-zinc-400 leading-normal": true,
+            "text-5xl font-bold text-zinc-500 dark:text-zinc-300 leading-normal": true,
           })}>
             Welcome to &nbsp;
             <span className={`text-black dark:text-blue-500 text-6xl underline`}>DeCrypt</span>,

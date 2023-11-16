@@ -5,8 +5,8 @@ export function SignOutButton() {
   return (
     <Button
       variant="ghost"
-      color="warning"
-      className="font-bold dark:font-normal hover:scale-105 transition"
+      color="danger"
+      className="font-bold hover:scale-105 transition"
       onClick={() => signOut({ callbackUrl: "/" })}
     >
       Sign Out

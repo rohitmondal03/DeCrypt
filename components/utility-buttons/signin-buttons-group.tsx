@@ -29,7 +29,7 @@ export function SignInButtonsGroup() {
         })}
         onClick={() => signIn("github", { callbackUrl: signinCallbackURL })}
       >
-        Continue with GitHub
+        Signin with GitHub
       </Button>
     </ButtonGroup>
   )

@@ -1,11 +1,11 @@
-import { redirect } from "next/navigation";
 import classNames from "classnames";
 import { Button } from "@nextui-org/react";
 
 import { monsterrat } from "@/components/font/fonts";
 import { getAuthSession } from "@/utils/getServerAuthSession"
 import { prisma } from "@/utils/prisma";
-import UsersList from "./_components/UsersPasswordList";
+import UsersPasswordsList from "./_components/UsersPasswordList";
+import AddNewPasswordButton from "./_components/add-new-password-button";
 
 
 export default async function DashboardPage() {
@@ -38,7 +38,13 @@ export default async function DashboardPage() {
       </h1>
 
       {getUsersPasswords.length > 0 ? (
-        <UsersList passwordList={getUsersPasswords} />
+        <div className={classNames({
+          "flex flex-col items-center justify-center gap-y-12": true,
+        })}>
+          <UsersPasswordsList passwordList={getUsersPasswords} />
+
+          <AddNewPasswordButton />
+        </div>
       ) : (
         <div className="mx-auto w-full text-center space-y-2">
           <p className={classNames({

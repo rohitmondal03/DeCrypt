@@ -1,9 +1,7 @@
 "use client"
 
 import { useParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import {
   Divider,
   Card, CardBody, CardFooter, CardHeader, Button,
@@ -13,14 +11,11 @@ import { Password } from "@prisma/client";
 
 import { monsterrat } from "@/components/font/fonts";
 import LoadingCard from "@/components/loading/loading-card";
-import { decryptText } from "@/utils/decrypt";
 
 
 
 export default function SinglePasswordPage() {
   const { slug } = useParams();
-  const router = useRouter();
-  const { status } = useSession();
   const [passwordData, setPasswordData] = useState<Password>();
   const [loading, setloading] = useState(false)
 
