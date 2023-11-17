@@ -39,7 +39,7 @@ export default function UsersPasswordsList({ passwordList }: TProps) {
           key={data.id}
           className={classNames({
             "flex flex-row items-center justify-around text-black dark:text-zinc-300": true,
-            "border-2 border-zinc-700 dark:border-zinc-400 rounded-xl py-4 px-2 w-[40vw]": true,
+            "border-2 border-zinc-700 dark:border-zinc-400 rounded-xl py-4 px-2 w-[55vw]": true,
           })}
           variants={fadeInAnimationVariants}
           initial={"initial"}
@@ -47,7 +47,7 @@ export default function UsersPasswordsList({ passwordList }: TProps) {
           custom={idx}
         >
           <p>{idx + 1 + "."}</p>
-          <p className="text-xl">{data.label.slice(0, 10) + "..."}</p>
+          <p className="text-xl font-bold">{data.label.slice(0, 8) + "..."}</p>
           <p>
             {data.encryptedPassword.length > 50 ?
               data.encryptedPassword.slice(0, 30) + "..." :

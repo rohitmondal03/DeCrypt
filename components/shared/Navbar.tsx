@@ -61,7 +61,7 @@ export default function Navbar() {
               variant={pathName == link.href ? "flat" : "faded"}
               className={classNames({
                 "font-bold": pathName === link.href,
-                "border-2 border-zinc-700 dark:border-zinc-500": pathName !== link.href,
+                "border-2 border-yellow-500 dark:border-yellow-500": pathName === link.href,
                 "scale-105": true
               })}
             >
@@ -78,7 +78,7 @@ export default function Navbar() {
               variant={pathName == "/sign-in" ? "flat" : "faded"}
               className={classNames({
                 "font-bold": pathName === "/sign-in",
-                "border-2 border-zinc-700 dark:border-zinc-500": pathName !== "/sign-in",
+                "border-2 border-yellow-500 dark:border-yellow-500": pathName === "/sign-in",
                 "scale-105": true,
               })}
             >
@@ -102,7 +102,7 @@ export default function Navbar() {
               isOpen={isOpen}
               onOpenChange={onOpenChange}
               className={classNames({
-                "h-40 p-6": true,
+                "h-40 p-6 border-2 border-red-700": true,
               })}
             >
               <ModalContent>
@@ -115,7 +115,7 @@ export default function Navbar() {
                     ?
                   </p>
                 </ModalBody>
-                
+
                 <ModalFooter>
                   <SignOutButton />
                 </ModalFooter>
