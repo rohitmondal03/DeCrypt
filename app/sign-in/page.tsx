@@ -1,16 +1,21 @@
+import dynamic from 'next/dynamic';
 import Image from 'next/image'
 import { redirect } from "next/navigation";
 import classNames from 'classnames'
 
-import { getAuthSession } from "@/utils/getServerAuthSession";
-import { SignInButtonsGroup } from '@/components/utility-buttons/signin-buttons-group';
+import { getServerSideUserDetails } from '@/hooks/getServerSideUserDetails';
+
+const SignInButtonsGroup = dynamic(() => import("@/components/utility-buttons/signin-buttons-group")
+  .then((module) => module.SignInButtonsGroup)
+)
 
 
-export default async function Page() {
-  const session = await getAuthSession();
 
-  // don't allow logged users to access this route
-  session ? redirect("/dashboard") : null;
+export default async function SignInPage() {
+  const userDetails = await getServerSideUserDetails();
+
+  // don't allow "logged" users to access this route
+  userDetails ? redirect("/dashboard") : null;
 
   return (
     <section className='flex flex-row items-center justify-around h-[80vh]'>

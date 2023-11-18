@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { memo } from "react";
 import classNames from "classnames";
 
 import { monsterrat } from "@/components/font/fonts";
 
 
-export default function HomePage() {
+function HomePage() {
   return (
     <>
       <section className={classNames({
@@ -36,3 +37,5 @@ export default function HomePage() {
     </>
   )
 }
+
+export default memo(HomePage);

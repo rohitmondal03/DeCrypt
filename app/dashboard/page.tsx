@@ -1,18 +1,16 @@
+import dynamic from "next/dynamic";
 import classNames from "classnames";
-import { Button } from "@nextui-org/react";
 
 import { monsterrat } from "@/components/font/fonts";
-import { getAuthSession } from "@/utils/getServerAuthSession"
 import { prisma } from "@/utils/prisma";
-import UsersPasswordsList from "./_components/UsersPasswordList";
-import AddNewPasswordButton from "./_components/add-new-password-button";
+import { getServerSideUserDetails } from "@/hooks/getServerSideUserDetails";
+
+const UsersPasswordsList = dynamic(() => import("./_components/UsersPasswordList"))
+const AddNewPasswordButton = dynamic(() => import("./_components/add-new-password-button"))
 
 
 export default async function DashboardPage() {
-  const session = await getAuthSession();
-
-  // get user details.
-  const userDetails = session?.user;
+  const userDetails = await getServerSideUserDetails();
 
   // fetch all passwords of users.
   const getUsersPasswords = await prisma.password.findMany({
@@ -43,19 +41,17 @@ export default async function DashboardPage() {
         })}>
           <UsersPasswordsList passwordList={getUsersPasswords} />
 
-          <AddNewPasswordButton />
+          <AddNewPasswordButton buttonText="Add more password" />
         </div>
       ) : (
-        <div className="mx-auto w-full text-center space-y-2">
+        <div className="mx-auto w-full text-center space-y-5">
           <p className={classNames({
             "text-2xl text-blue-500 font-bold": true,
           })}>
             No Passwords Found
           </p>
 
-          <Button color="warning" variant="flat">
-            Add your first password
-          </Button>
+          <AddNewPasswordButton buttonText="Add your first password" />
         </div>
       )}
     </section>

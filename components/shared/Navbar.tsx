@@ -1,9 +1,9 @@
 "use client"
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useSession } from "next-auth/react"
 import classNames from "classnames";
 import {
   Button,
@@ -12,20 +12,24 @@ import {
   Modal, ModalBody, ModalContent, ModalFooter, useDisclosure,
 } from "@nextui-org/react";
 
-import { ThemeSwitcher } from "@/components/themes/ThemeSwitcher";
-import { SignOutButton } from "@/components/utility-buttons/signout-button";
+import { getClientSideUserDetails } from "@/hooks/getClientSideUserDetails";
 import { Logo } from "./Logo";
+
+const ThemeSwitcher = dynamic(() => import("@/components/themes/ThemeSwitcher")
+  .then((mod) => mod.ThemeSwitcher)
+)
+const SignOutButton = dynamic(() => import("@/components/utility-buttons/signout-button")
+  .then((mod) => mod.SignOutButton)
+);
 
 
 export default function Navbar() {
   const pathName = usePathname();
-  const { data: session, status } = useSession();
   const { theme } = useTheme();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+  const { userDetails, authStatus } = getClientSideUserDetails();
 
-  // get user's details
-  let userDetails = session?.user;
 
   // navbar links
   const navLinks = [
@@ -69,7 +73,7 @@ export default function Navbar() {
             </Button>
           </NavbarItem>
         ))}
-        {status === "unauthenticated" ? (
+        {authStatus === "unauthenticated" ? (
           <NavbarItem>
             <Button
               as={Link}

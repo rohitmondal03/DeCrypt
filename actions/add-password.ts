@@ -1,27 +1,28 @@
 "use server"
 
-import { getAuthSession } from "@/utils/getServerAuthSession"
+import { revalidatePath } from "next/cache"
 
 import { prisma } from "@/utils/prisma"
 import { encryptText } from "@/utils/encrypt"
-import { revalidatePath } from "next/cache"
+import { getServerSideUserDetails } from "@/hooks/getServerSideUserDetails"
 
-type TProps= {
+
+type TProps = {
   label: string
   password: string
 }
 
 export async function addPassword(data: TProps) {
-  const session= await getAuthSession(); 
-  const {label, password}= data;
+  const userDetails = await getServerSideUserDetails();
+  const { label, password } = data;
 
-  const encryptedPassword= encryptText(password);
+  const encryptedPassword = encryptText(password);
 
   await prisma.password.create({
     data: {
       label: label,
       encryptedPassword: encryptedPassword,
-      userId: session?.user.id as string
+      userId: userDetails?.id as string
     },
   })
 

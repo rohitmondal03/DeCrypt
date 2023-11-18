@@ -1,5 +1,6 @@
 "use client"
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import classNames from "classnames";
 import {
@@ -10,7 +11,8 @@ import {
 
 import { addPassword } from "@/actions/add-password";
 import { monsterrat } from "@/components/font/fonts";
-import SubmitPasswordButton from "./submit-password-button";
+
+const SubmitPasswordButton = dynamic(() => import("./submit-password-button"))
 
 
 type TInputs = {
@@ -18,7 +20,12 @@ type TInputs = {
   password: string
 }
 
-export default function AddNewPasswordButton() {
+type TProps = {
+  buttonText: string
+}
+
+
+export default function AddNewPasswordButton({ buttonText }: TProps) {
   const { onOpen, onOpenChange, isOpen, onClose } = useDisclosure();
   const [inputValues, setInputValues] = useState<TInputs>({
     label: "",
@@ -34,7 +41,7 @@ export default function AddNewPasswordButton() {
         onClick={onOpen}
         className="font-bold"
       >
-        Add more password
+        {buttonText}
       </Button>
 
       <Modal
@@ -47,15 +54,21 @@ export default function AddNewPasswordButton() {
       >
         <ModalContent>
           <h1 className={classNames(`${monsterrat.className}`, {
-            "text-center font-bold text-3xl": true,
+            "text-center font-bold text-3xl mb-6": true,
           })}>
             Add new Password
           </h1>
 
-          <form action={() => {
-            addPassword(inputValues)
-            onClose()
-          }}>
+          <form
+            action={() => {
+              addPassword(inputValues)
+              onClose()
+              setInputValues({
+                label: "",
+                password: "",
+              })
+            }}
+          >
             <ModalBody>
               <Input
                 type="text"

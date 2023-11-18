@@ -4,11 +4,11 @@ import { Button, ButtonGroup } from "@nextui-org/react";
 import classNames from "classnames";
 
 import { monsterrat } from "@/components/font/fonts";
-import { getAuthSession } from "@/utils/getServerAuthSession";
+import { getServerSideUserDetails } from "@/hooks/getServerSideUserDetails";
 
 
 export default async function NotFoundPage() {
-  const session = await getAuthSession();
+  const userDetails = await getServerSideUserDetails();
 
   return (
     <section className={classNames(`${monsterrat.className}`, {
@@ -45,7 +45,7 @@ export default async function NotFoundPage() {
             Go to Home Page
           </Button>
 
-          {session ? (
+          {userDetails ? (
             <Button
               as={Link}
               href={"/dashboard"}

@@ -1,15 +1,20 @@
 "use client"
 
+import dynamic from "next/dynamic"
+import { useState } from "react"
 import {
   Button,
   Divider,
-  Card, CardBody, CardFooter, CardHeader,
+  Tooltip,
+  Card, CardBody, CardFooter, CardHeader, user,
 } from "@nextui-org/react"
 import { Password } from "@prisma/client"
 import classNames from "classnames"
 
 import { monsterrat } from "@/components/font/fonts"
-import { decryptText } from "@/utils/decrypt"
+
+const ShowOriginalPasswordButton = dynamic(() => import("./show-original-password-button"))
+const DeletePasswordButton = dynamic(() => import("./delete-password-button"))
 
 
 type TProps = {
@@ -18,6 +23,17 @@ type TProps = {
 
 export default function SinglePage(props: TProps) {
   const { passwordDetails } = props;
+  const { label, encryptedPassword, id, userId } = passwordDetails;
+
+  // for toggling b/w showing full or short encryted password
+  const [isFullEncryptedPassword, setIsFullEncryptedPassword] = useState<boolean>(false);
+
+
+  // showing full password or not...
+  const showFullEncryptedPassword = () => {
+    setIsFullEncryptedPassword((prev) => !prev)
+  }
+
 
   return (
     <Card className={classNames({
@@ -27,7 +43,7 @@ export default function SinglePage(props: TProps) {
       <CardHeader className={classNames(`${monsterrat.className}`, {
         "text-3xl fon-bold": true,
       })}>
-        {passwordDetails.label}
+        {label}
       </CardHeader>
 
       <Divider orientation="horizontal" />
@@ -39,17 +55,33 @@ export default function SinglePage(props: TProps) {
           Encrypted Password:
         </p>
 
-        <p>
-          {passwordDetails.encryptedPassword.slice(0, 100) + "..."}
-        </p>
+        <Tooltip
+          content={`Click to show ${isFullEncryptedPassword ? "short" : "full"} password`}
+          color="warning"
+          placement="top-end"
+        >
+          <p
+            onClick={showFullEncryptedPassword}
+            className={classNames({
+              "cursor-pointer transition ease-out hover:scale-[101%]": true,
+            })}
+          >
+            {isFullEncryptedPassword
+              ? encryptedPassword
+              : encryptedPassword.slice(0, 100) + "..."
+            }
+          </p>
+        </Tooltip>
       </CardBody>
 
       <Divider orientation="horizontal" />
 
-      <CardFooter>
-        <Button variant="solid" color="primary">
-          Show Original Password
-        </Button>
+      <CardFooter className={classNames({
+        "flex flex-row items-center justify-between": true,
+      })}>
+        <ShowOriginalPasswordButton />
+
+        <DeletePasswordButton userId={userId} id={id} />
       </CardFooter>
     </Card>
   )
