@@ -1,12 +1,10 @@
-import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import classNames from "classnames";
 import { Password } from "@prisma/client";
 
 import { prisma } from "@/utils/prisma"
 import { getServerSideUserDetails } from "@/hooks/getServerSideUserDetails";
-
-const SinglePage= dynamic(() => import("./_components/SinglePage"))
+import SinglePage from "./_components/SinglePage";
 
 
 type TProps = {
@@ -19,7 +17,6 @@ export default async function SinglePasswordPage({ params }: TProps) {
   const { slug } = params;  // id of single password.
   const userDetails = await getServerSideUserDetails();
 
-
   const getPasswordDetails = await prisma.password.findFirst({
     where: {
       id: slug
@@ -29,7 +26,7 @@ export default async function SinglePasswordPage({ params }: TProps) {
   // user's id !== the password detail's userID ==> redirect to "/dashboard"
   getPasswordDetails?.userId !== userDetails?.id && redirect("/dashboard")
 
-  
+
   return (
     <section className={classNames({
       "h-[80vh] flex items-center justify-center": true,

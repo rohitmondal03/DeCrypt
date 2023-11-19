@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { ImageResponse } from 'next/og'
 
 // Route segment config
@@ -29,7 +30,7 @@ export default function Icon() {
           color: 'white',
         }}
       >
-        A
+        D
       </div>
     ),
     // ImageResponse options
@@ -39,4 +40,8 @@ export default function Icon() {
       ...size,
     }
   )
+
+  // return (
+  //   <Image src={"/assets/error.svg"} alt='' height={"200"} width={"300"} />
+  // )
 }

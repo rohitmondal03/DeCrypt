@@ -4,11 +4,7 @@ import { redirect } from "next/navigation";
 import classNames from 'classnames'
 
 import { getServerSideUserDetails } from '@/hooks/getServerSideUserDetails';
-
-const SignInButtonsGroup = dynamic(() => import("@/components/utility-buttons/signin-buttons-group")
-  .then((module) => module.SignInButtonsGroup)
-)
-
+import { SignInButtonsGroup } from '@/components/utility-buttons/signin-buttons-group';
 
 
 export default async function SignInPage() {

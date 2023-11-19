@@ -13,14 +13,9 @@ import {
 } from "@nextui-org/react";
 
 import { getClientSideUserDetails } from "@/hooks/getClientSideUserDetails";
+import { SignOutButton } from "@/components/utility-buttons/signout-button";
+import { ThemeSwitcher } from "@/components/themes/ThemeSwitcher";
 import { Logo } from "./Logo";
-
-const ThemeSwitcher = dynamic(() => import("@/components/themes/ThemeSwitcher")
-  .then((mod) => mod.ThemeSwitcher)
-)
-const SignOutButton = dynamic(() => import("@/components/utility-buttons/signout-button")
-  .then((mod) => mod.SignOutButton)
-);
 
 
 export default function Navbar() {

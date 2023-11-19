@@ -64,5 +64,5 @@ model Password {
   userId            String
   user              User     @relation(fields: [userId], references: [id])
 
-  @@unique([userId, id])
+  @@unique([id])
 }

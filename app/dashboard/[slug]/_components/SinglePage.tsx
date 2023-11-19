@@ -1,9 +1,7 @@
 "use client"
 
-import dynamic from "next/dynamic"
 import { useState } from "react"
 import {
-  Button,
   Divider,
   Tooltip,
   Card, CardBody, CardFooter, CardHeader, user,
@@ -12,9 +10,8 @@ import { Password } from "@prisma/client"
 import classNames from "classnames"
 
 import { monsterrat } from "@/components/font/fonts"
-
-const ShowOriginalPasswordButton = dynamic(() => import("./show-original-password-button"))
-const DeletePasswordButton = dynamic(() => import("./delete-password-button"))
+import ShowOriginalPasswordButton from "./show-original-password-button"
+import DeletePasswordButton from "./delete-password-button"
 
 
 type TProps = {

@@ -13,10 +13,10 @@ export function SignInButtonsGroup() {
       <Button
         variant='bordered'
         color="warning"
+        onClick={() => signIn("discord", { callbackUrl: signinCallbackURL })}
         className={classNames({
           'font-bold dark:font-normal': true,
         })}
-        onClick={() => signIn("discord", { callbackUrl: signinCallbackURL })}
       >
         Signin with Discord
       </Button>
@@ -24,10 +24,10 @@ export function SignInButtonsGroup() {
       <Button
         variant='bordered'
         color="success"
+        onClick={() => signIn("github", { callbackUrl: signinCallbackURL })}
         className={classNames({
           'font-bold dark:font-normal': true,
         })}
-        onClick={() => signIn("github", { callbackUrl: signinCallbackURL })}
       >
         Signin with GitHub
       </Button>

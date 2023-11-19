@@ -1,11 +1,15 @@
+"use client"
+
+import { useState } from "react"
 import {
   Button,
-  Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure
+  Modal, ModalContent, ModalFooter, ModalHeader, useDisclosure
 } from "@nextui-org/react";
 import classNames from "classnames";
 import { DeleteIcon } from "lucide-react";
 
 import { monsterrat } from "@/components/font/fonts";
+import { useRouter } from "next/navigation";
 
 
 type TProps = {
@@ -13,18 +17,34 @@ type TProps = {
   id: string
 }
 
+
+export const dynamic = "auto"
+export const revalidate = "true"
+
+
 export default function DeletePasswordButton(props: TProps) {
   const { id, userId } = props
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
 
+
+  // function for deleting password...
   async function deletePassword() {
-    await fetch("/api/deletePassword", {
+    setLoading(true)
+
+    const data = await fetch("/api/deletePassword", {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify({ ...props })
+      body: JSON.stringify({ id: id, userId: userId })
     })
+
+    setLoading(false);
+
+    onClose();
+    router.refresh();
   }
 
 
@@ -49,12 +69,19 @@ export default function DeletePasswordButton(props: TProps) {
         })}
       >
         <ModalContent>
-          <ModalHeader>Are you sure you want to delete password</ModalHeader>
+          <ModalHeader>
+            Are you sure you want to delete password?
+          </ModalHeader>
 
           <ModalFooter className={classNames({
             "flex flex-row items-center justify-between": true,
           })}>
-            <Button color="danger">Yes</Button>
+            <Button
+              color="danger"
+              onClick={deletePassword}
+            >
+              {loading ? "Deleting..." : "Yes"}
+            </Button>
 
             <Button
               variant="bordered"
