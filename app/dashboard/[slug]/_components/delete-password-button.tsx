@@ -1,5 +1,6 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 import {
   Button,
@@ -9,7 +10,6 @@ import classNames from "classnames";
 import { DeleteIcon } from "lucide-react";
 
 import { monsterrat } from "@/components/font/fonts";
-import { useRouter } from "next/navigation";
 
 
 type TProps = {
@@ -25,8 +25,8 @@ export const revalidate = "true"
 export default function DeletePasswordButton(props: TProps) {
   const { id, userId } = props
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
-  const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
 
 
   // function for deleting password...
@@ -35,6 +35,7 @@ export default function DeletePasswordButton(props: TProps) {
 
     const data = await fetch("/api/deletePassword", {
       method: 'POST',
+      cache: "no-cache",
       headers: {
         'content-type': 'application/json'
       },
@@ -54,9 +55,8 @@ export default function DeletePasswordButton(props: TProps) {
         variant="ghost"
         color="danger"
         onClick={onOpen}
-        isIconOnly
       >
-        <DeleteIcon />
+        Delete Password
       </Button>
 
       <Modal

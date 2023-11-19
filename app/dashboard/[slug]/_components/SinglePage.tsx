@@ -19,8 +19,7 @@ type TProps = {
 }
 
 export default function SinglePage(props: TProps) {
-  const { passwordDetails } = props;
-  const { label, encryptedPassword, id, userId } = passwordDetails;
+  const { label, encryptedPassword, id, userId } = props.passwordDetails;
 
   // for toggling b/w showing full or short encryted password
   const [isFullEncryptedPassword, setIsFullEncryptedPassword] = useState<boolean>(false);
@@ -76,7 +75,7 @@ export default function SinglePage(props: TProps) {
       <CardFooter className={classNames({
         "flex flex-row items-center justify-between": true,
       })}>
-        <ShowOriginalPasswordButton />
+        <ShowOriginalPasswordButton encryptedPassword={encryptedPassword} />
 
         <DeletePasswordButton userId={userId} id={id} />
       </CardFooter>

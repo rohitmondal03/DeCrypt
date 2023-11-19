@@ -1,6 +1,5 @@
 "use client"
 
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import classNames from "classnames";
 import {
@@ -11,8 +10,7 @@ import {
 
 import { addPassword } from "@/actions/add-password";
 import { monsterrat } from "@/components/font/fonts";
-
-const SubmitPasswordButton = dynamic(() => import("./submit-password-button"))
+import SubmitPasswordButton from "./submit-password-button";
 
 
 type TInputs = {
@@ -74,6 +72,7 @@ export default function AddNewPasswordButton({ buttonText }: TProps) {
                 type="text"
                 label="Label"
                 autoComplete="off"
+                autoFocus
                 required
                 value={inputValues.label}
                 onChange={(e) => {

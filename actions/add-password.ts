@@ -7,12 +7,13 @@ import { encryptText } from "@/utils/encrypt"
 import { getServerSideUserDetails } from "@/hooks/getServerSideUserDetails"
 
 
-type TProps = {
+type TArgs = {
   label: string
   password: string
 }
 
-export async function addPassword(data: TProps) {
+
+export async function addPassword(data: TArgs) {
   const userDetails = await getServerSideUserDetails();
   const { label, password } = data;
 
@@ -20,8 +21,8 @@ export async function addPassword(data: TProps) {
 
   await prisma.password.create({
     data: {
-      label: label,
-      encryptedPassword: encryptedPassword,
+      label: label.trim(),
+      encryptedPassword: encryptedPassword.trim(),
       userId: userDetails?.id as string
     },
   })
