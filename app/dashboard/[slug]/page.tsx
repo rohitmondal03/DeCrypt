@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Password } from "@prisma/client";
 
 import { prisma } from "@/utils/prisma"
-import { getServerSideUserDetails } from "@/hooks/getServerSideUserDetails";
+import { getServerSideUserDetails } from "@/utils/getServerSideUserDetails";
 import SinglePage from "./_components/SinglePage";
 
 

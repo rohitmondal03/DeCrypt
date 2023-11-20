@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache"
 
 import { prisma } from "@/utils/prisma"
 import { encryptText } from "@/utils/encrypt"
-import { getServerSideUserDetails } from "@/hooks/getServerSideUserDetails"
+import { getServerSideUserDetails } from "@/utils/getServerSideUserDetails"
 
 
 type TArgs = {

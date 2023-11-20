@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import { monsterrat } from "@/components/font/fonts";
 import { prisma } from "@/utils/prisma";
-import { getServerSideUserDetails } from "@/hooks/getServerSideUserDetails";
+import { getServerSideUserDetails } from "@/utils/getServerSideUserDetails";
 
 const UsersPasswordsList = dynamic(() => import("./_components/UsersPasswordList"))
 const AddNewPasswordButton = dynamic(() => import("./_components/add-new-password-button"))

@@ -8,7 +8,7 @@ import {
   Input,
 } from "@nextui-org/react";
 
-import { addPassword } from "@/actions/add-password";
+import { addPassword } from "@/app/dashboard/actions/add-password";
 import { monsterrat } from "@/components/font/fonts";
 import SubmitPasswordButton from "./submit-password-button";
 

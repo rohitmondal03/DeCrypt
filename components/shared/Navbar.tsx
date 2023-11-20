@@ -12,7 +12,7 @@ import {
   Modal, ModalBody, ModalContent, ModalFooter, useDisclosure,
 } from "@nextui-org/react";
 
-import { getClientSideUserDetails } from "@/hooks/getClientSideUserDetails";
+import { getClientSideUserDetails } from "@/hooks/useUserDetails";
 import { SignOutButton } from "@/components/utility-buttons/signout-button";
 import { ThemeSwitcher } from "@/components/themes/ThemeSwitcher";
 import { Logo } from "./Logo";
@@ -87,6 +87,7 @@ export default function Navbar() {
         ) : (
           <NavbarItem>
             <Avatar
+              rel="preconnect"
               isBordered
               size="md"
               color={theme === "dark" ? "danger" : "warning"}
