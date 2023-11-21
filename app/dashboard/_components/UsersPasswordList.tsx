@@ -49,9 +49,9 @@ export default function UsersPasswordsList({ passwordList }: TProps) {
           <p>{idx + 1 + "."}</p>
           <p className="text-xl font-bold">{data.label.slice(0, 8) + "..."}</p>
           <p>
-            {data.encryptedPassword.length > 50 ?
-              data.encryptedPassword.slice(0, 30) + "..." :
-              data.encryptedPassword
+            {data.encryptedPassword.length > 50
+              ? data.encryptedPassword.slice(0, 30) + "..."
+              : data.encryptedPassword
             }
           </p>
 

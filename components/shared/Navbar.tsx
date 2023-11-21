@@ -9,8 +9,13 @@ import {
   Button,
   Avatar,
   Navbar as Nav, NavbarBrand, NavbarContent, NavbarItem,
-  Modal, ModalBody, ModalContent, ModalFooter, useDisclosure,
+  useDisclosure,
 } from "@nextui-org/react";
+
+const Modal= dynamic(() => import("@nextui-org/react").then((mod) =>mod.Modal))
+const ModalBody= dynamic(() => import("@nextui-org/react").then((mod) =>mod.ModalBody))
+const ModalContent= dynamic(() => import("@nextui-org/react").then((mod) =>mod.ModalContent))
+const ModalFooter= dynamic(() => import("@nextui-org/react").then((mod) =>mod.ModalFooter))
 
 import { getClientSideUserDetails } from "@/hooks/useUserDetails";
 import { SignOutButton } from "@/components/utility-buttons/signout-button";

@@ -1,13 +1,15 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { useState } from "react"
 import {
   Divider,
-  Tooltip,
-  Card, CardBody, CardFooter, CardHeader, user,
+  Card, CardBody, CardFooter, CardHeader,
 } from "@nextui-org/react"
 import { Password } from "@prisma/client"
 import classNames from "classnames"
+
+const Tooltip= dynamic(() => import("@nextui-org/react").then((mod) => mod.Tooltip))
 
 import { monsterrat } from "@/components/font/fonts"
 import ShowOriginalPasswordButton from "./show-original-password-button"
@@ -76,7 +78,6 @@ export default function SinglePage(props: TProps) {
         "flex flex-row items-center justify-between": true,
       })}>
         <ShowOriginalPasswordButton encryptedPassword={encryptedPassword} />
-
         <DeletePasswordButton userId={userId} id={id} />
       </CardFooter>
     </Card>

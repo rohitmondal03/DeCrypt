@@ -40,7 +40,6 @@ export default async function DashboardPage() {
           "flex flex-col items-center justify-center gap-y-12": true,
         })}>
           <UsersPasswordsList passwordList={getUsersPasswords} />
-
           <AddNewPasswordButton buttonText="Add more password" />
         </div>
       ) : (

@@ -1,9 +1,5 @@
 import dynamic from "next/dynamic";
-import {
-  Button,
-  // Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, 
-  useDisclosure
-} from "@nextui-org/react";
+import { Button, useDisclosure } from "@nextui-org/react";
 import classNames from "classnames";
 
 const Modal = dynamic(() => import("@nextui-org/react").then((mod) => mod.Modal))

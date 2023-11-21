@@ -1,11 +1,13 @@
-import { memo, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import {
   Button,
-  Dropdown, DropdownItem, DropdownMenu, DropdownTrigger
+  Dropdown, DropdownMenu , DropdownItem, DropdownTrigger, 
 } from "@nextui-org/react"
 import { Moon, Sun } from "lucide-react";
 import classNames from "classnames";
+
 
 
 export function ThemeSwitcher() {

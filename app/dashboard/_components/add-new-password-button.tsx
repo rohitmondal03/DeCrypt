@@ -1,12 +1,15 @@
 "use client"
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
+import { Button, useDisclosure } from "@nextui-org/react";
 import classNames from "classnames";
-import {
-  Button,
-  Modal, ModalBody, ModalContent, ModalFooter, useDisclosure,
-  Input,
-} from "@nextui-org/react";
+
+const Modal = dynamic(() => import("@nextui-org/react").then((mod) => mod.Modal))
+const ModalBody = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalBody))
+const ModalContent = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalContent))
+const ModalFooter = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalFooter))
+const Input = dynamic(() => import("@nextui-org/react").then((mod) => mod.Input))
 
 import { addPassword } from "@/app/dashboard/actions/add-password";
 import { monsterrat } from "@/components/font/fonts";

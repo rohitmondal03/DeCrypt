@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import Image from 'next/image'
 import { redirect } from "next/navigation";
 import classNames from 'classnames'
@@ -12,6 +11,7 @@ export default async function SignInPage() {
 
   // don't allow "logged" users to access this route
   userDetails ? redirect("/dashboard") : null;
+
 
   return (
     <section className='flex flex-row items-center justify-around h-[80vh]'>

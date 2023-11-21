@@ -3,18 +3,14 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
-import {
-  Button,
-  // Modal, ModalContent, ModalFooter, ModalHeader, 
-  useDisclosure
-} from "@nextui-org/react";
+import { Button, useDisclosure } from "@nextui-org/react";
 import classNames from "classnames";
 
 const Modal = dynamic(() => import("@nextui-org/react").then((mod) => mod.Modal))
 const ModalContent = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalContent))
 const ModalFooter = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalFooter))
 const ModalHeader = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalHeader))
-// const useDisclosure = dynamic(() => import("@nextui-org/react").then((mod) => mod.useDisclosure))
+
 
 import { monsterrat } from "@/components/font/fonts";
 
@@ -25,12 +21,11 @@ type TProps = {
 }
 
 
-// export const dynamic = "auto"
 export const revalidate = "true"
 
 
 export default function DeletePasswordButton(props: TProps) {
-  const { id, userId } = props
+  const { id, userId } = props;
   const { onOpen, isOpen, onOpenChange, onClose } = useDisclosure();
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
@@ -42,7 +37,7 @@ export default function DeletePasswordButton(props: TProps) {
 
     const data = await fetch("/api/deletePassword", {
       method: 'POST',
-      cache: "no-cache",
+      cache: "force-cache",
       headers: {
         'content-type': 'application/json'
       },
