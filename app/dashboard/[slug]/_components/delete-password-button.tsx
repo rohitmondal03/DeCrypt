@@ -1,13 +1,20 @@
 "use client"
 
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react"
 import {
   Button,
-  Modal, ModalContent, ModalFooter, ModalHeader, useDisclosure
+  // Modal, ModalContent, ModalFooter, ModalHeader, 
+  useDisclosure
 } from "@nextui-org/react";
 import classNames from "classnames";
-import { DeleteIcon } from "lucide-react";
+
+const Modal = dynamic(() => import("@nextui-org/react").then((mod) => mod.Modal))
+const ModalContent = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalContent))
+const ModalFooter = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalFooter))
+const ModalHeader = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalHeader))
+// const useDisclosure = dynamic(() => import("@nextui-org/react").then((mod) => mod.useDisclosure))
 
 import { monsterrat } from "@/components/font/fonts";
 
@@ -18,7 +25,7 @@ type TProps = {
 }
 
 
-export const dynamic = "auto"
+// export const dynamic = "auto"
 export const revalidate = "true"
 
 

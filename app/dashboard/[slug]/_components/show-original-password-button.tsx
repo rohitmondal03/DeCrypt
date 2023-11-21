@@ -1,9 +1,16 @@
-import { useMemo } from "react";
+import dynamic from "next/dynamic";
 import {
   Button,
-  Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure
+  // Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, 
+  useDisclosure
 } from "@nextui-org/react";
 import classNames from "classnames";
+
+const Modal = dynamic(() => import("@nextui-org/react").then((mod) => mod.Modal))
+const ModalContent = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalContent))
+const ModalFooter = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalFooter))
+const ModalHeader = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalHeader))
+const ModalBody = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalBody))
 
 import { monsterrat } from "@/components/font/fonts";
 import { decryptText } from "@/utils/decrypt";
