@@ -4,7 +4,7 @@ import { Button, ButtonGroup } from "@nextui-org/react";
 import classNames from "classnames";
 
 import { monsterrat } from "@/components/font/fonts";
-import { getServerSideUserDetails } from "@/utils/getServerSideUserDetails";
+import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails";
 
 
 export default async function NotFoundPage() {

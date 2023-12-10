@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { Button, useDisclosure } from "@nextui-org/react";
+import {  useDisclosure } from "@nextui-org/react";
 import classNames from "classnames";
 
 const Modal = dynamic(() => import("@nextui-org/react").then((mod) => mod.Modal))
@@ -13,6 +13,7 @@ const Input = dynamic(() => import("@nextui-org/react").then((mod) => mod.Input)
 
 import { addPassword } from "@/app/dashboard/actions/add-password";
 import { monsterrat } from "@/components/font/fonts";
+import { Button } from "@/components/ui/button";
 import SubmitPasswordButton from "./submit-password-button";
 
 
@@ -38,7 +39,6 @@ export default function AddNewPasswordButton({ buttonText }: TProps) {
     <>
       <Button
         color="warning"
-        variant="solid"
         onClick={onOpen}
         className="font-bold"
       >

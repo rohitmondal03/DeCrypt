@@ -7,7 +7,7 @@ import {
 import DiscordProvider from "next-auth/providers/discord";
 import GithubProvider from "next-auth/providers/github"
 
-import { prisma } from "@/utils/prisma";
+import { prisma } from "@/lib/prisma";
 
 
 declare module "next-auth" {

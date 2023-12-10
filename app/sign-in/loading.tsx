@@ -1,10 +1,7 @@
-import dynamic from "next/dynamic";
-
-const LoadingStandalone = dynamic(() => import("@/components/loading/loading-standalone"));
-
+import LoadingComponent from "@/components/loading/loading";
 
 export default function SignInPageLoading() {
   return (
-    <LoadingStandalone />
+    <LoadingComponent />
   )
 }

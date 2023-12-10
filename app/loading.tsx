@@ -1,9 +1,7 @@
-import dynamic from "next/dynamic";
-
-import LoadingStandalone from "@/components/loading/loading-standalone";
+import LoadingComponent from "@/components/loading/loading";
 
 export default function Loading() {
   return (
-    <LoadingStandalone />
+    <LoadingComponent />
   )
 }

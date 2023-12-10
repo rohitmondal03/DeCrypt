@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { redirect } from "next/navigation";
 import classNames from 'classnames'
 
-import { getServerSideUserDetails } from '@/utils/getServerSideUserDetails';
+import { getServerSideUserDetails } from '@/lib/getServerSideUserDetails';
 import { SignInButtonsGroup } from '@/components/utility-buttons/signin-buttons-group';
 
 

@@ -2,8 +2,8 @@ import { redirect } from "next/navigation";
 import classNames from "classnames";
 import { Password } from "@prisma/client";
 
-import { prisma } from "@/utils/prisma"
-import { getServerSideUserDetails } from "@/utils/getServerSideUserDetails";
+import { prisma } from "@/lib/prisma"
+import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails";
 import SinglePage from "./_components/SinglePage";
 
 

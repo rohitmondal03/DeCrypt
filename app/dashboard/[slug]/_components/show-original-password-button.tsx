@@ -9,7 +9,7 @@ const ModalHeader = dynamic(() => import("@nextui-org/react").then((mod) => mod.
 const ModalBody = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalBody))
 
 import { monsterrat } from "@/components/font/fonts";
-import { decryptText } from "@/utils/decrypt";
+import { decryptText } from "@/lib/decrypt";
 
 
 type TProps = {

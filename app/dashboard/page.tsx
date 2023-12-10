@@ -2,8 +2,8 @@ import dynamic from "next/dynamic";
 import classNames from "classnames";
 
 import { monsterrat } from "@/components/font/fonts";
-import { prisma } from "@/utils/prisma";
-import { getServerSideUserDetails } from "@/utils/getServerSideUserDetails";
+import { prisma } from "@/lib/prisma";
+import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails";
 
 const UsersPasswordsList = dynamic(() => import("./_components/UsersPasswordList"))
 const AddNewPasswordButton = dynamic(() => import("./_components/add-new-password-button"))

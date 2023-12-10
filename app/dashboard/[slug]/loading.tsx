@@ -1,10 +1,7 @@
-import dynamic from "next/dynamic";
-
-const LoadingCard= dynamic(() => import("@/components/loading/loading-card"))
-
+import LoadingComponent from "@/components/loading/loading";
 
 export default function Loading() {
   return (
-    <LoadingCard />
+    <LoadingComponent />
   )
 }

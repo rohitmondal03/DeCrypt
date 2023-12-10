@@ -1,36 +1,50 @@
 "use client"
 
 import { signIn } from "next-auth/react"
-import { Button, ButtonGroup } from '@nextui-org/react';
+import { OAuthProviderType } from "next-auth/providers/oauth-types";
 import classNames from "classnames";
 
+import { Button } from "../ui/button";
+
+
+type TSignInButton = {
+  providerLabel: string,
+  color: "warning" | "success",
+  signInProvider: OAuthProviderType,
+}
 
 const signinCallbackURL = "/dashboard"
 
+const signInButton: TSignInButton[] = [
+  {
+    providerLabel: "Github",
+    color: "warning",
+    signInProvider: "github"
+  },
+  {
+    providerLabel: "Discord",
+    color: "success",
+    signInProvider: "discord"
+  }
+]
+
+
 export function SignInButtonsGroup() {
   return (
-    <ButtonGroup className="space-x-1">
-      <Button
-        variant='bordered'
-        color="warning"
-        onClick={() => signIn("discord", { callbackUrl: signinCallbackURL })}
-        className={classNames({
-          'font-bold dark:font-normal': true,
-        })}
-      >
-        Signin with Discord
-      </Button>
-
-      <Button
-        variant='bordered'
-        color="success"
-        onClick={() => signIn("github", { callbackUrl: signinCallbackURL })}
-        className={classNames({
-          'font-bold dark:font-normal': true,
-        })}
-      >
-        Signin with GitHub
-      </Button>
-    </ButtonGroup>
+    <div className={classNames({
+      "flex flex-row gap-3 items-center justify-center": true,
+    })}>
+      {signInButton.map((btns) => (
+        <Button
+          color={btns.color}
+          onClick={() => signIn(btns.signInProvider, { callbackUrl: signinCallbackURL })}
+          className={classNames({
+            'font-bold dark:font-normal': true,
+          })}
+        >
+          Sign In with {btns.providerLabel}
+        </Button>
+      ))}
+    </div>
   )
 }

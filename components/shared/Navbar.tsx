@@ -17,9 +17,9 @@ const ModalBody= dynamic(() => import("@nextui-org/react").then((mod) =>mod.Moda
 const ModalContent= dynamic(() => import("@nextui-org/react").then((mod) =>mod.ModalContent))
 const ModalFooter= dynamic(() => import("@nextui-org/react").then((mod) =>mod.ModalFooter))
 
-import { getClientSideUserDetails } from "@/hooks/useUserDetails";
+import { useUser } from "@/hooks/useUser";
 import { SignOutButton } from "@/components/utility-buttons/signout-button";
-import { ThemeSwitcher } from "@/components/themes/ThemeSwitcher";
+import { ThemeSwitcher } from "@/components/themes/theme-switcher";
 import { Logo } from "./Logo";
 
 
@@ -28,7 +28,7 @@ export default function Navbar() {
   const { theme } = useTheme();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const { userDetails, authStatus } = getClientSideUserDetails();
+  const { userDetails, authStatus } = useUser();
 
 
   // navbar links

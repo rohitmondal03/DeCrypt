@@ -1,14 +1,12 @@
-import dynamic from 'next/dynamic'
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 
+import AuthSessionWrapper from '@/components/shared/AuthSessionProvider'
+import SmoothScrollProvider from '@/components/shared/CustomSmoothScrollProvider'
+import { ThemeProvider } from '@/components/themes/theme-provider'
 import { codeFont } from '@/components/font/fonts'
+import Navbar from '@/components/shared/Navbar'
 import './_styles/globals.css'
-
-const Navbar = dynamic(() => import('@/components/shared/Navbar'));
-const AuthSessionWrapper = dynamic(() => import('@/components/shared/AuthSessionProvider'));
-const SmoothScrollProvider = dynamic(() => import('@/components/shared/CustomSmoothScrollProvider'));
-const NextUIProviders = dynamic(() => import('@/components/themes/NextUIProvider'));
 
 
 export const metadata: Metadata = {
@@ -25,14 +23,19 @@ export default function RootLayout({ children }: TProps) {
   return (
     <html lang="en">
       <body className={codeFont.className}>
-        <NextUIProviders>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <AuthSessionWrapper>
             <SmoothScrollProvider>
               <Navbar />
               <main>{children}</main>
             </SmoothScrollProvider>
           </AuthSessionWrapper>
-        </NextUIProviders>
+        </ThemeProvider>
       </body>
     </html>
   )

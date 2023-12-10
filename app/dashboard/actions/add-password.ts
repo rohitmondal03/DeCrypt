@@ -2,9 +2,9 @@
 
 import { revalidatePath } from "next/cache"
 
-import { prisma } from "@/utils/prisma"
-import { encryptText } from "@/utils/encrypt"
-import { getServerSideUserDetails } from "@/utils/getServerSideUserDetails"
+import { prisma } from "@/lib/prisma"
+import { encryptText } from "@/lib/encrypt"
+import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails"
 
 
 type TArgs = {
