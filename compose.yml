@@ -1,6 +1,6 @@
 services:
   postgres:
-    container_name: romantic_einstein
+    container_name: decrypt-db
     image: postgres
     environment:
       - POSTGRES_USER= ${POSTGRES_USER}
