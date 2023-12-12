@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { monsterrat } from "../font/fonts";
+import { monsterrat } from "../../lib/fonts";
 
 
 export function Logo() {

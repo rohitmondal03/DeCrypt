@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { Password } from "@prisma/client";
+import { type Password } from "@prisma/client";
 import classNames from "classnames";
 import { MoveRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -29,7 +29,9 @@ type TProps = {
   passwordList: Password[]
 }
 
-export default function UsersPasswordsList({ passwordList }: TProps) {
+export default function UsersPasswordsList(
+  { passwordList }: TProps
+) {
   return (
     <div className={classNames({
       "flex flex-col gap-y-4 items-center justify-center": true,
@@ -47,11 +49,18 @@ export default function UsersPasswordsList({ passwordList }: TProps) {
           custom={idx}
         >
           <p>{idx + 1 + "."}</p>
-          <p className="text-xl font-bold">{data.label.slice(0, 8) + "..."}</p>
+          <p className="text-xl font-bold">
+            {
+              data.label.length > 7
+                ? data.label.slice(0, 7)
+                : data.label
+            }
+          </p>
           <p>
-            {data.encryptedPassword.length > 50
-              ? data.encryptedPassword.slice(0, 30) + "..."
-              : data.encryptedPassword
+            {
+              data.encryptedPassword.length > 50
+                ? data.encryptedPassword.slice(0, 30) + "..."
+                : data.encryptedPassword
             }
           </p>
 

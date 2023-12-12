@@ -13,7 +13,6 @@ type TProps = {
 }
 
 export default function TextGradientAnimate({ children, classes }: TProps) {
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 

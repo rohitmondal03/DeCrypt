@@ -5,15 +5,10 @@ import { revalidatePath } from "next/cache"
 import { prisma } from "@/lib/prisma"
 import { encryptText } from "@/lib/encrypt"
 import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails"
+import { TPasswordInputs } from "@/types"
 
 
-type TArgs = {
-  label: string
-  password: string
-}
-
-
-export async function addPassword(data: TArgs) {
+export async function addPassword(data: TPasswordInputs) {
   const userDetails = await getServerSideUserDetails();
   const { label, password } = data;
 
@@ -28,5 +23,4 @@ export async function addPassword(data: TArgs) {
   })
 
   revalidatePath("/dashboard")
-  console.log("added...")
 }

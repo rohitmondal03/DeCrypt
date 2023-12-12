@@ -11,7 +11,7 @@ import classNames from "classnames"
 
 const Tooltip= dynamic(() => import("@nextui-org/react").then((mod) => mod.Tooltip))
 
-import { monsterrat } from "@/components/font/fonts"
+import { monsterrat } from "@/lib/fonts"
 import ShowOriginalPasswordButton from "./show-original-password-button"
 import DeletePasswordButton from "./delete-password-button"
 

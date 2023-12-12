@@ -1,8 +1,9 @@
 "use client"
 
-import { Button } from "@nextui-org/react"
-import classNames from "classnames"
 import Image from "next/image"
+import classNames from "classnames"
+
+import { Button } from "@/components/ui/button"
 
 
 type TProps = {
@@ -34,8 +35,7 @@ export default function ErrorPage({ reset }: TProps) {
         </h1>
 
         <Button
-          color="primary"
-          variant="solid"
+          variant="default"
           onClick={() => reset()}
         >
           Try Again !!

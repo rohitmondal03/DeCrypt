@@ -13,7 +13,9 @@ type TProps = {
   }
 }
 
-export default async function SinglePasswordPage({ params }: TProps) {
+export default async function SinglePasswordPage(
+  { params }: TProps
+) {
   const { slug } = params;  // id of single password.
   const userDetails = await getServerSideUserDetails();
 

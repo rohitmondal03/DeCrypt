@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
-import { ReactNode } from 'react'
 
 import AuthSessionWrapper from '@/components/shared/AuthSessionProvider'
 import SmoothScrollProvider from '@/components/shared/CustomSmoothScrollProvider'
 import { ThemeProvider } from '@/components/themes/theme-provider'
-import { codeFont } from '@/components/font/fonts'
+import { codeFont } from '@/lib/fonts'
 import Navbar from '@/components/shared/Navbar'
-import './_styles/globals.css'
+import { TLayoutProps } from '@/types'
+import '../styles/globals.css'
 
 
 export const metadata: Metadata = {
@@ -15,17 +15,13 @@ export const metadata: Metadata = {
 }
 
 
-type TProps = {
-  children: ReactNode,
-}
-
-export default function RootLayout({ children }: TProps) {
+export default function RootLayout({ children }: TLayoutProps) {
   return (
     <html lang="en">
       <body className={codeFont.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

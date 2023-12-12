@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "next-themes";
 import classNames from "classnames";
 
 import { useUser } from "@/hooks/useUser";
@@ -15,8 +14,6 @@ import { Logo } from "./Logo";
 
 export default function Navbar() {
   const pathName = usePathname();
-  const { theme } = useTheme();
-
   const { userDetails, authStatus } = useUser();
 
 
@@ -51,15 +48,13 @@ export default function Navbar() {
               <AvatarImage src={userDetails?.image || ""} />
             </Avatar>
 
+            <SignOutButton />
+
             <Link href={`/dashboard`}>
-              <Button
-                variant={pathName === "/dashboard" ? "default" : "ghost"}
-              >
+              <Button variant={pathName === "/dashboard" ? "default" : "secondary"}>
                 Dashboard
               </Button>
             </Link>
-
-            <SignOutButton />
           </>
         )}
 

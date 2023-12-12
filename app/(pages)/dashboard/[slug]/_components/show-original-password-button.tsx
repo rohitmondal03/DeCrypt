@@ -8,7 +8,7 @@ const ModalFooter = dynamic(() => import("@nextui-org/react").then((mod) => mod.
 const ModalHeader = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalHeader))
 const ModalBody = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalBody))
 
-import { monsterrat } from "@/components/font/fonts";
+import { monsterrat } from "@/lib/fonts";
 import { decryptText } from "@/lib/decrypt";
 
 

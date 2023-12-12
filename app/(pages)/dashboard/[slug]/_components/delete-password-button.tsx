@@ -11,8 +11,7 @@ const ModalContent = dynamic(() => import("@nextui-org/react").then((mod) => mod
 const ModalFooter = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalFooter))
 const ModalHeader = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalHeader))
 
-
-import { monsterrat } from "@/components/font/fonts";
+import { monsterrat } from "@/lib/fonts";
 
 
 type TProps = {

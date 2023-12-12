@@ -2,7 +2,7 @@ import Image from "next/image";
 import { memo } from "react";
 import classNames from "classnames";
 
-import { monsterrat } from "@/components/font/fonts";
+import { monsterrat } from "@/lib/fonts";
 
 
 function HomePage() {

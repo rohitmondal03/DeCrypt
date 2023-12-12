@@ -1,12 +1,12 @@
 import dynamic from "next/dynamic";
 import classNames from "classnames";
 
-import { monsterrat } from "@/components/font/fonts";
+import { monsterrat } from "@/lib/fonts";
 import { prisma } from "@/lib/prisma";
 import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails";
 
 const UsersPasswordsList = dynamic(() => import("./_components/UsersPasswordList"))
-const AddNewPasswordButton = dynamic(() => import("./_components/add-new-password-button"))
+const AddNewPasswordButton = dynamic(() => import("./_components/add-new-password-component"))
 
 
 export default async function DashboardPage() {
@@ -20,6 +20,7 @@ export default async function DashboardPage() {
   });
 
 
+
   return (
     <section className={classNames({
       "py-16": true,
@@ -27,7 +28,7 @@ export default async function DashboardPage() {
       "space-y-12": getUsersPasswords.length > 0
     })}>
       <h1 className={classNames({
-        "text-center text-4xl leading-snug": true
+        "text-center text-4xl leading-snug font-bold": true
       })}>
         Welcome to your Dashboard <br />
         <span className={classNames(`${monsterrat.className}`, {

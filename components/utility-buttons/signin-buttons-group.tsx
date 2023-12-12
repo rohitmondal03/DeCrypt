@@ -5,7 +5,7 @@ import { OAuthProviderType } from "next-auth/providers/oauth-types";
 import classNames from "classnames";
 
 import { Button } from "../ui/button";
-import { monsterrat } from "../font/fonts";
+import { monsterrat } from "../../lib/fonts";
 
 
 type TSignInButton = {

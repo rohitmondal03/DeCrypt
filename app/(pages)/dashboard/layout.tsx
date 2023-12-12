@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { ReactNode } from "react";
+
+import { TLayoutProps } from "@/types";
+
 
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "",
 }
 
-type TProps = {
-  children: ReactNode
-}
 
-export default function DashboardLayout({ children }: TProps) {
+export default function DashboardLayout(
+  { children }: TLayoutProps
+) {
   return (
     <>
       {children}

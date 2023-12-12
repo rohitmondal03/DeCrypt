@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button, ButtonGroup } from "@nextui-org/react";
 import classNames from "classnames";
 
-import { monsterrat } from "@/components/font/fonts";
+import { monsterrat } from "@/lib/fonts";
 import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails";
+import { Button } from "@/components/ui/button";
 
 
 export default async function NotFoundPage() {
@@ -35,37 +35,28 @@ export default async function NotFoundPage() {
           Page not found...
         </h1>
 
-        <ButtonGroup className="space-x-1">
-          <Button
-            as={Link}
-            href={"/"}
-            color="warning"
-            variant="bordered"
-          >
-            Go to Home Page
-          </Button>
+        <div className="flex flex-row items-center justify-center gap-x-3">
+          <Link href={"/"}>
+            <Button variant="default">
+              Go to Home Page
+            </Button>
+          </Link>
 
           {userDetails ? (
-            <Button
-              as={Link}
-              href={"/dashboard"}
-              color="primary"
-              variant="bordered"
-            >
-              Dashboard
-            </Button>
+            <Link href={"/dashboard"}>
+              <Button variant="secondary">
+                Dashboard
+              </Button>
+            </Link>
           ) : (
-            <Button
-              as={Link}
-              href={"/sign-in"}
-              color="primary"
-              variant="bordered"
-            >
-              Go to Sign In page
-            </Button>
+            <Link href={"/sign-in"}>
+              <Button variant="secondary">
+                Sign In
+              </Button>
+            </Link>
           )}
-        </ButtonGroup>
+        </div>
       </div>
-    </section>
+    </section >
   )
 }
