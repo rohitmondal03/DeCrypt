@@ -15,7 +15,9 @@ function HomePage() {
           "text-5xl font-bold text-zinc-500 dark:text-zinc-300 leading-normal": true,
         })}>
           Welcome to &nbsp;
-          <span className={`text-black dark:text-blue-500 text-6xl underline`}>DeCrypt</span>,
+          <span className={`text-black dark:text-blue-500 text-6xl underline`}>
+            DeCrypt
+          </span>,
           the secure password manager.
         </h1>
 

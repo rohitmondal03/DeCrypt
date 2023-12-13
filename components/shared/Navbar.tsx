@@ -1,15 +1,20 @@
 "use client"
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 
 import { useUser } from "@/hooks/useUser";
-import { SignOutButton } from "@/components/utility-buttons/signout-button";
-import { ThemeSwitcher } from "@/components/themes/theme-switcher";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Logo } from "./Logo";
+
+const ThemeSwitcher= dynamic(() => import("@/components/themes/theme-switcher").then((mod) => mod.ThemeSwitcher))
+const SignOutButton= dynamic(() => import("@/components/utility-buttons/signout-button").then((mod) => mod.SignOutButton))
+const Button= dynamic(() => import("@/components/ui/button").then((mod) => mod.Button))
+const Avatar= dynamic(() => import("@/components/ui/avatar").then((mod) => mod.Avatar))
+const AvatarFallback= dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarFallback))
+const AvatarImage= dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarImage))
+
 
 
 export default function Navbar() {

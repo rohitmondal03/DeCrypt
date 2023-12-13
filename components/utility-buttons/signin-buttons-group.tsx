@@ -1,12 +1,13 @@
 "use client"
 
+import dynamic from "next/dynamic";
 import { signIn } from "next-auth/react"
 import { OAuthProviderType } from "next-auth/providers/oauth-types";
 import classNames from "classnames";
 
-import { Button } from "../ui/button";
 import { monsterrat } from "../../lib/fonts";
 
+const Button= dynamic(() => import("@/components/ui/button").then((mod) => mod.Button));
 
 type TSignInButton = {
   providerLabel: string,
@@ -23,14 +24,18 @@ const signInButton: TSignInButton[] = [
   {
     providerLabel: "Discord",
     signInProvider: "discord"
-  }
+  },
+  // {
+  //   providerLabel: "Google",
+  //   signInProvider: "google",
+  // }
 ]
 
 
 export function SignInButtonsGroup() {
   return (
     <div className={classNames({
-      "flex flex-row gap-3 items-center justify-center": true,
+      "flex flex-row gap-3 items-center justify-start": true,
     })}>
       {signInButton.map((btns) => (
         <Button
@@ -38,7 +43,7 @@ export function SignInButtonsGroup() {
           variant={"secondary"}
           onClick={() => signIn(btns.signInProvider, { callbackUrl: signinCallbackURL })}
           className={classNames(`${monsterrat.className}`, {
-            'font-bold outline outline-1 outline-zinc-400 dark:outline-zinc-700': true,
+            'font-bold': true,
             "transition hover:scale-105": true,
           })}
         >

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 
-import { prisma } from "@/lib/prisma"
+import { prisma } from "@/server/prisma"
 import { encryptText } from "@/lib/encrypt"
 import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails"
 import { TPasswordInputs } from "@/types"

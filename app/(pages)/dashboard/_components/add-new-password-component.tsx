@@ -11,6 +11,7 @@ const DialogHeader = dynamic(() => import("@/components/ui/dialog").then((mod) =
 const DialogTitle = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogTitle))
 const Dialog = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.Dialog))
 const DialogTrigger = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogTrigger))
+const DialogClose= dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogClose))
 const Input = dynamic(() => import("@/components/ui/input").then((mod) => mod.Input))
 const Label = dynamic(() => import("@/components/ui/label").then((mod) => mod.Label))
 const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.Button))
@@ -65,6 +66,7 @@ export default function AddNewPasswordButton({ buttonText }: TProps) {
                 id="label"
                 className="col-span-3"
                 required
+                autoComplete="off"
                 value={inputValues.label}
                 onChange={(e) => setInputValues((prev) => ({ ...prev, label: e.target.value }))}
               />
@@ -77,13 +79,16 @@ export default function AddNewPasswordButton({ buttonText }: TProps) {
                 id="password"
                 className="col-span-3"
                 required
+                autoComplete="off"
                 value={inputValues.password}
                 onChange={(e) => setInputValues((prev) => ({ ...prev, password: e.target.value }))}
               />
             </div>
 
             <DialogFooter>
-              <SubmitPasswordButton />
+              <DialogClose>
+                <SubmitPasswordButton />
+              </DialogClose>
             </DialogFooter>
           </form>
         </DialogContent>

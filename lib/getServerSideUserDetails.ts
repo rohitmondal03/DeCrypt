@@ -1,6 +1,6 @@
 import { type Session, getServerSession } from "next-auth";
 
-import { authOptions } from "./next-auth";
+import { authOptions } from "../server/next-auth";
 
 
 type TUserDetails = Session["user"]

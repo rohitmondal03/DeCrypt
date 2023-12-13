@@ -11,7 +11,7 @@ export default function SubmitPasswordButton() {
   return (
     <Button
       type="submit"
-      variant="secondary"
+      variant={pending ? "destructive": "secondary"}
       color={pending ? "danger" : "warning"}
       className="font-bold"
     >

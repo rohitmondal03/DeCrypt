@@ -1,13 +1,14 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import {
-  getServerSession,
   type NextAuthOptions,
   type DefaultSession,
 } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import GithubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/server/prisma";
+import { env } from "@/env.mjs"
 
 
 declare module "next-auth" {
@@ -35,7 +36,8 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: env.NEXTAUTH_SECRET,
+  // secret: env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token }) => {
       const db_user = await prisma.user.findFirst({
@@ -61,12 +63,16 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     DiscordProvider({
-      clientId: process.env.DISCORD_CLIENT_ID as string,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+      clientId: env.DISCORD_CLIENT_ID,
+      clientSecret: env.DISCORD_CLIENT_SECRET,
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-    })
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+    }),
+    // GoogleProvider({
+    //   clientId: env.GOOGLE_CLIENT_ID,
+    //   clientSecret: env.GOOGLE_CLIENT_SECRET,
+    // })
   ],
 };

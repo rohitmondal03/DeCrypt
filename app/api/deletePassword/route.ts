@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/server/prisma";
 
 
 export async function POST(request: NextRequest,) {

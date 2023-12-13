@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import classNames from "classnames";
 
 import { monsterrat } from "@/lib/fonts";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/server/prisma";
 import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails";
 
 const UsersPasswordsList = dynamic(() => import("./_components/UsersPasswordList"))

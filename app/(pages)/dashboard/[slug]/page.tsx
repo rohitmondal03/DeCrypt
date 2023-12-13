@@ -1,10 +1,12 @@
+import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import classNames from "classnames";
 import { Password } from "@prisma/client";
 
-import { prisma } from "@/lib/prisma"
+import { prisma } from "@/server/prisma"
 import { getServerSideUserDetails } from "@/lib/getServerSideUserDetails";
-import SinglePage from "./_components/SinglePage";
+
+const SinglePasswordPage= dynamic(() => import("./_components/SinglePasswordPage"));
 
 
 type TProps = {
@@ -13,7 +15,7 @@ type TProps = {
   }
 }
 
-export default async function SinglePasswordPage(
+export default async function SlugDashboardPage(
   { params }: TProps
 ) {
   const { slug } = params;  // id of single password.
@@ -33,7 +35,7 @@ export default async function SinglePasswordPage(
     <section className={classNames({
       "h-[80vh] flex items-center justify-center": true,
     })}>
-      <SinglePage passwordDetails={getPasswordDetails as Password} />
+      <SinglePasswordPage passwordDetails={getPasswordDetails as Password} />
     </section>
   )
 }

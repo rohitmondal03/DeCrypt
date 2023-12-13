@@ -1,15 +1,18 @@
 import dynamic from "next/dynamic";
-import { Button, useDisclosure } from "@nextui-org/react";
 import classNames from "classnames";
-
-const Modal = dynamic(() => import("@nextui-org/react").then((mod) => mod.Modal))
-const ModalContent = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalContent))
-const ModalFooter = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalFooter))
-const ModalHeader = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalHeader))
-const ModalBody = dynamic(() => import("@nextui-org/react").then((mod) => mod.ModalBody))
 
 import { monsterrat } from "@/lib/fonts";
 import { decryptText } from "@/lib/decrypt";
+
+const Dialog = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.Dialog))
+const DialogHeader = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogHeader))
+const DialogTitle = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogTitle))
+const DialogContent = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogContent))
+const DialogFooter = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogFooter))
+const DialogTrigger = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogTrigger))
+const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.Button));
+
+
 
 
 type TProps = {
@@ -18,9 +21,8 @@ type TProps = {
 
 
 export default function ShowOriginalPasswordButton({ encryptedPassword }: TProps) {
-  const { onClose, onOpen, isOpen, onOpenChange } = useDisclosure();
-
   const originalPassword = decryptText(encryptedPassword) as string
+
 
   // function to copy original password.
   const copyPassword = () => {
@@ -30,49 +32,38 @@ export default function ShowOriginalPasswordButton({ encryptedPassword }: TProps
 
   return (
     <>
-      <Button
-        variant="solid"
-        color="primary"
-        onClick={onOpen}
-      >
-        Original Password
-      </Button>
-
-      <Modal
-        placement="bottom-center"
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpenChange={onOpenChange}
-        className={classNames({
-          "py-10": true,
-        })}
-      >
-        <ModalContent className={classNames({
-          "border-2 bg-black border-zinc-300 dark:bg-white dark:border-zinc-800": true,
-        })}>
-          <ModalHeader className={classNames(`${monsterrat.className}`, {
-            "text-3xl font-bold text-blue-500": true,
-          })}>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="default">
             Original Password
-          </ModalHeader>
+          </Button>
+        </DialogTrigger>
 
-          <ModalBody>
-            <p className="text-white dark:text-black">
-              {originalPassword}
-            </p>
-          </ModalBody>
+        <DialogContent className={classNames({
+          "border-2 border-black dark:border-white": true
+        })}>
+          <DialogHeader>
+            <DialogTitle className={classNames(`${monsterrat.className}`, {
+              "text-3xl font-bold text-blue-400": true,
+            })}>
+              Original Password
+            </DialogTitle>
+          </DialogHeader>
 
-          <ModalFooter>
+          <p>
+            {originalPassword}
+          </p>
+
+          <DialogFooter>
             <Button
-              variant="flat"
-              color="warning"
+              variant={"secondary"}
               onClick={copyPassword}
             >
               Copy
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }

@@ -29,6 +29,7 @@ type TProps = {
   passwordList: Password[]
 }
 
+
 export default function UsersPasswordsList(
   { passwordList }: TProps
 ) {
@@ -52,7 +53,7 @@ export default function UsersPasswordsList(
           <p className="text-xl font-bold">
             {
               data.label.length > 7
-                ? data.label.slice(0, 7)
+                ? data.label.slice(0, 7) + "..."
                 : data.label
             }
           </p>
