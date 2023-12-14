@@ -1,15 +1,15 @@
 "use client"
 
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes"
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 
-import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button";
+
+const DropdownMenu = dynamic(() => import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenu))
+const DropdownMenuContent = dynamic(() => import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenuContent))
+const DropdownMenuItem = dynamic(() => import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenuItem))
+const DropdownMenuTrigger = dynamic(() => import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenuTrigger))
 
 
 export function ThemeSwitcher() {

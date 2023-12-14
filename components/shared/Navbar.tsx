@@ -3,21 +3,22 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { memo } from "react";
 import classNames from "classnames";
 
 import { useUser } from "@/hooks/useUser";
-import { Logo } from "./Logo";
 
-const ThemeSwitcher= dynamic(() => import("@/components/themes/theme-switcher").then((mod) => mod.ThemeSwitcher))
-const SignOutButton= dynamic(() => import("@/components/utility-buttons/signout-button").then((mod) => mod.SignOutButton))
-const Button= dynamic(() => import("@/components/ui/button").then((mod) => mod.Button))
-const Avatar= dynamic(() => import("@/components/ui/avatar").then((mod) => mod.Avatar))
-const AvatarFallback= dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarFallback))
-const AvatarImage= dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarImage))
+const ThemeSwitcher = dynamic(() => import("@/components/themes/theme-switcher").then((mod) => mod.ThemeSwitcher))
+const SignOutButton = dynamic(() => import("@/components/utility-buttons/signout-button").then((mod) => mod.SignOutButton))
+const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.Button))
+const Avatar = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.Avatar))
+const AvatarFallback = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarFallback))
+const AvatarImage = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarImage))
+const Logo = dynamic(() => import("./Logo").then((mod) => mod.Logo))
 
 
 
-export default function Navbar() {
+function Navbar() {
   const pathName = usePathname();
   const { userDetails, authStatus } = useUser();
 
@@ -39,12 +40,6 @@ export default function Navbar() {
                 Sign In
               </Button>
             </Link>
-
-            <Link href={`/dashboard`}>
-              <Button variant={pathName === "/dashboard" ? "default" : "secondary"}>
-                Dashboard
-              </Button>
-            </Link>
           </>
         ) : (
           <>
@@ -54,17 +49,19 @@ export default function Navbar() {
             </Avatar>
 
             <SignOutButton />
-
-            <Link href={`/dashboard`}>
-              <Button variant={pathName === "/dashboard" ? "default" : "secondary"}>
-                Dashboard
-              </Button>
-            </Link>
           </>
         )}
+
+        <Link href={`/dashboard`}>
+          <Button variant={pathName === "/dashboard" ? "default" : "secondary"}>
+            Dashboard
+          </Button>
+        </Link>
 
         <ThemeSwitcher />
       </div>
     </nav>
   )
 }
+
+export default memo(Navbar);

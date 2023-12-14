@@ -1,22 +1,17 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { useState } from "react"
 import { Password } from "@prisma/client"
 import classNames from "classnames"
 
 import { monsterrat } from "@/lib/fonts"
 
+const ShowPasswordButton = dynamic(() => import("./show-password-button"));
+const DeletePasswordButton = dynamic(() => import("./delete-password-button"));
 const Card = dynamic(() => import("@/components/ui/card").then((mod) => mod.Card))
 const CardContent = dynamic(() => import("@/components/ui/card").then((mod) => mod.CardContent))
 const CardHeader = dynamic(() => import("@/components/ui/card").then((mod) => mod.CardHeader))
 const CardFooter = dynamic(() => import("@/components/ui/card").then((mod) => mod.CardFooter))
-const Tooltip = dynamic(() => import("@/components/ui/tooltip").then((mod) => mod.Tooltip))
-const TooltipContent = dynamic(() => import("@/components/ui/tooltip").then((mod) => mod.TooltipContent))
-const TooltipTrigger = dynamic(() => import("@/components/ui/tooltip").then((mod) => mod.TooltipTrigger))
-const TooltipProvider = dynamic(() => import("@/components/ui/tooltip").then((mod) => mod.TooltipProvider))
-const ShowOriginalPasswordButton = dynamic(() => import("./show-original-password-button"));
-const DeletePasswordButton = dynamic(() => import("./delete-password-button"));
 
 
 
@@ -27,15 +22,6 @@ type TProps = {
 
 export default function SinglePage(props: TProps) {
   const { label, encryptedPassword, id, userId } = props.passwordDetails;
-
-  // for toggling b/w showing full or short encryted password
-  const [isFullEncryptedPassword, setIsFullEncryptedPassword] = useState<boolean>(false);
-
-
-  // showing full password or not...
-  const showFullEncryptedPassword = () => {
-    setIsFullEncryptedPassword((prev) => !prev)
-  }
 
 
   return (
@@ -56,34 +42,15 @@ export default function SinglePage(props: TProps) {
           Encrypted Password:
         </p>
 
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <p
-                onClick={showFullEncryptedPassword}
-                className={classNames({
-                  "cursor-pointer transition ease-out hover:scale-[101%]": true,
-                  "w-fit": true,
-                })}
-              >
-                {isFullEncryptedPassword
-                  ? encryptedPassword
-                  : encryptedPassword.slice(0, 40) + "..."
-                }
-              </p>
-            </TooltipTrigger>
-
-            <TooltipContent>
-              <p>Show Full Encrypted Password</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <p>
+          {encryptedPassword.slice(0, 40) + "..."}
+        </p>
       </CardContent>
 
       <CardFooter className={classNames({
         "flex flex-row items-center justify-between": true,
       })}>
-        <ShowOriginalPasswordButton encryptedPassword={encryptedPassword} />
+        <ShowPasswordButton encryptedPassword={encryptedPassword} />
         <DeletePasswordButton userId={userId} id={id} />
       </CardFooter>
     </Card>

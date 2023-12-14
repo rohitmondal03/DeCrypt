@@ -22,9 +22,6 @@ type TProps = {
 }
 
 
-export const revalidate = "true"
-
-
 export default function DeletePasswordButton(props: TProps) {
   const { id, userId } = props;
   const [loading, setLoading] = useState<boolean>(false);
