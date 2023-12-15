@@ -17,7 +17,7 @@ const Label = dynamic(() => import("@/components/ui/label").then((mod) => mod.La
 const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.Button))
 
 import { TPasswordInputs } from "@/types";
-import { addPassword } from "../actions/add-password";
+import { addPassword } from "../_actions/add-password";
 
 const SubmitPasswordButton = dynamic(() => import("./submit-password-button"))
 

@@ -8,13 +8,13 @@ import classNames from "classnames";
 
 import { useUser } from "@/hooks/useUser";
 
+const Logo = dynamic(() => import("./Logo").then((mod) => mod.Logo))
 const ThemeSwitcher = dynamic(() => import("@/components/themes/theme-switcher").then((mod) => mod.ThemeSwitcher))
 const SignOutButton = dynamic(() => import("@/components/utility-buttons/signout-button").then((mod) => mod.SignOutButton))
 const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.Button))
 const Avatar = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.Avatar))
 const AvatarFallback = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarFallback))
 const AvatarImage = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarImage))
-const Logo = dynamic(() => import("./Logo").then((mod) => mod.Logo))
 
 
 
@@ -53,8 +53,14 @@ function Navbar() {
         )}
 
         <Link href={`/dashboard`}>
-          <Button variant={pathName === "/dashboard" ? "default" : "secondary"}>
+          <Button variant={pathName.startsWith("/dashboard") ? "default" : "secondary"}>
             Dashboard
+          </Button>
+        </Link>
+
+        <Link href={`/generate-password`}>
+          <Button variant={pathName === "/generate-password" ? "default" : "secondary"}>
+            Generate Password
           </Button>
         </Link>
 
