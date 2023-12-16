@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import randomstring from "randomstring"
 
@@ -19,12 +19,21 @@ const DialogHeader = dynamic(() => import("@/components/ui/dialog").then((mod) =
 const DialogContent = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogContent))
 const DialogFooter = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogFooter))
 const DialogTrigger = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogTrigger))
-// const DialogTitle = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogTitle))
-// const DialogClose = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogClose))
+const Checkbox = dynamic(() => import("@/components/ui/checkbox").then((mod) => mod.Checkbox))
+const Label = dynamic(() => import("@/components/ui/label").then((mod) => mod.Label))
+
 
 
 export default function GenerateRandomPasswordWidget() {
   const [randomText, setRandomText] = useState<string>("");
+  const [chk, setChk] = useState({
+    splCharsChecked: true,
+    numCharsChecked: true,
+  })
+
+  useEffect(() => {
+    console.log(chk)
+  }, [chk])
 
 
   // generating random string
@@ -62,7 +71,40 @@ export default function GenerateRandomPasswordWidget() {
           </CardDescription>
         </CardHeader>
 
-        <CardContent>
+        <CardContent className={classNames({
+          "space-y-5": true,
+        })}>
+          <div className={classNames({
+            "flex items-center gap-x-3": true,
+          })}>
+            <Label htmlFor="add-special-chars">
+              Add special characters
+            </Label>
+
+            <Checkbox
+              defaultChecked
+              id="add-special-chars"
+              onCheckedChange={() =>
+                setChk((prev) => ({ ...prev, splCharsChecked: !prev.splCharsChecked }))                
+              }
+            />
+          </div>
+
+          <div className={classNames({
+            "flex items-center gap-x-3": true,
+          })}>
+            <Label htmlFor="add-nums">
+              Add Numbers
+            </Label>
+
+            <Checkbox
+              defaultChecked
+              id="add-nums"
+              onCheckedChange={() =>
+                setChk((prev) => ({ ...prev, numCharsChecked: !prev.numCharsChecked }))
+              }
+            />
+          </div>
         </CardContent>
 
         <CardFooter>
