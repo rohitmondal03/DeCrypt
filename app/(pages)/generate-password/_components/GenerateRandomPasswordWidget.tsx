@@ -19,26 +19,21 @@ const DialogHeader = dynamic(() => import("@/components/ui/dialog").then((mod) =
 const DialogContent = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogContent))
 const DialogFooter = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogFooter))
 const DialogTrigger = dynamic(() => import("@/components/ui/dialog").then((mod) => mod.DialogTrigger))
-const Checkbox = dynamic(() => import("@/components/ui/checkbox").then((mod) => mod.Checkbox))
+const Input = dynamic(() => import("@/components/ui/input").then((mod) => mod.Input))
 const Label = dynamic(() => import("@/components/ui/label").then((mod) => mod.Label))
 
 
 
 export default function GenerateRandomPasswordWidget() {
   const [randomText, setRandomText] = useState<string>("");
-  const [chk, setChk] = useState({
-    splCharsChecked: true,
-    numCharsChecked: true,
-  })
-
-  useEffect(() => {
-    console.log(chk)
-  }, [chk])
+  const [passwordLength, setPasswordLength] = useState<string>("12");
 
 
   // generating random string
   function generateRandomString() {
-    const randomString = randomstring.generate();
+    const randomString= randomstring.generate({
+      length: Number(passwordLength)
+    })
     setRandomText(randomString);
   }
 
@@ -74,35 +69,12 @@ export default function GenerateRandomPasswordWidget() {
         <CardContent className={classNames({
           "space-y-5": true,
         })}>
-          <div className={classNames({
-            "flex items-center gap-x-3": true,
-          })}>
-            <Label htmlFor="add-special-chars">
-              Add special characters
-            </Label>
-
-            <Checkbox
-              defaultChecked
-              id="add-special-chars"
-              onCheckedChange={() =>
-                setChk((prev) => ({ ...prev, splCharsChecked: !prev.splCharsChecked }))                
-              }
-            />
-          </div>
-
-          <div className={classNames({
-            "flex items-center gap-x-3": true,
-          })}>
-            <Label htmlFor="add-nums">
-              Add Numbers
-            </Label>
-
-            <Checkbox
-              defaultChecked
-              id="add-nums"
-              onCheckedChange={() =>
-                setChk((prev) => ({ ...prev, numCharsChecked: !prev.numCharsChecked }))
-              }
+          <div>
+            <Label htmlFor="password-length">Enter length:</Label>
+            <Input
+              id="password-length"
+              value={passwordLength}
+              onChange={(e) => setPasswordLength(e.target.value)}
             />
           </div>
         </CardContent>
@@ -118,7 +90,7 @@ export default function GenerateRandomPasswordWidget() {
               </Button>
             </DialogTrigger>
 
-            <RandomPasswordWidget randomText={randomText} />
+            <RandomPasswordDialog randomText={randomText} />
           </Dialog>
         </CardFooter>
       </Card>
@@ -128,7 +100,7 @@ export default function GenerateRandomPasswordWidget() {
 
 
 
-function RandomPasswordWidget(
+function RandomPasswordDialog(
   { randomText }: { randomText: string }
 ) {
   return (

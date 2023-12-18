@@ -5,8 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { memo } from "react";
 import classNames from "classnames";
+import { Menu } from "lucide-react"
 
 import { useUser } from "@/hooks/useUser";
+import { SheetTrigger } from "../ui/sheet";
 
 const Logo = dynamic(() => import("./Logo").then((mod) => mod.Logo))
 const ThemeSwitcher = dynamic(() => import("@/components/themes/theme-switcher").then((mod) => mod.ThemeSwitcher))
@@ -15,6 +17,7 @@ const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.
 const Avatar = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.Avatar))
 const AvatarFallback = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarFallback))
 const AvatarImage = dynamic(() => import("@/components/ui/avatar").then((mod) => mod.AvatarImage))
+const Sheet = dynamic(() => import("@/components/ui/sheet").then((mod) => mod.Sheet))
 
 
 
@@ -25,14 +28,17 @@ function Navbar() {
 
   return (
     <nav className={classNames({
-      "flex flex-row items-center justify-around py-8 border-b-2": true,
+      "flex flex-row items-center justify-between md:justify-around md:px-0 px-10 py-8 border-b-2": true,
       "border-zinc-400 dark:border-zinc-600": true,
     })}>
       <Link href="/">
         <Logo />
       </Link>
 
-      <div className="flex flex-row items-center justify-center gap-6">
+      <div className={classNames({
+        "hidden md:flex flex-row items-center justify-center gap-6": true,
+        "": true,
+      })}>
         {authStatus === "unauthenticated" ? (
           <>
             <Link href={`/sign-in`}>
@@ -66,6 +72,14 @@ function Navbar() {
 
         <ThemeSwitcher />
       </div>
+
+      <Sheet>
+        <SheetTrigger asChild>
+          <Menu className={classNames({
+            "flex md:hidden": true,
+          })} />
+        </SheetTrigger>
+      </Sheet>
     </nav>
   )
 }
