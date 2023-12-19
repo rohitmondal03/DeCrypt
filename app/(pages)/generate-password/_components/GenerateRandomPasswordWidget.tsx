@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import classNames from "classnames";
 import randomstring from "randomstring"
 
@@ -40,23 +40,26 @@ export default function GenerateRandomPasswordWidget() {
 
   return (
     <div className={classNames({
-      "mx-auto space-y-10": true,
+      "mx-auto": true,
+      "space-y-10": true,
     })}>
       <h1 className={classNames(`${monsterrat.className}`, {
-        "text-5xl text-blue-500 font-bold text-center": true,
+        "text-xl xs:text-2xl lg:text-3xl text-blue-500 font-bold text-center": true,
       })}>
         Random password generator...
       </h1>
 
 
       <Card className={classNames({
-        "w-[50%] mx-auto": true,
+        "w-[95%] sm:w-[90%] md:w-[80%] lg:w-[50%]": true,
         "border-2 border-zinc-500": true,
+        "mx-auto": true,
       })}>
-        <CardHeader>
+        <CardHeader className={classNames({
+          "p-2 xs:p-4": true,
+        })}>
           <CardTitle className={classNames({
-            "text-2xl": true,
-            "space-y-5": true,
+            "text-xl lg:text-2xl": true,
           })}>
             Generate a new random password
           </CardTitle>
@@ -67,7 +70,7 @@ export default function GenerateRandomPasswordWidget() {
         </CardHeader>
 
         <CardContent className={classNames({
-          "space-y-5": true,
+          "space-y-5 ": true,
         })}>
           <div>
             <Label htmlFor="password-length">Enter length:</Label>

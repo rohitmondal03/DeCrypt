@@ -8,7 +8,7 @@ import classNames from "classnames";
 import { Menu } from "lucide-react"
 
 import { useUser } from "@/hooks/useUser";
-import { SheetTrigger } from "../ui/sheet";
+import { SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 
 const Logo = dynamic(() => import("./Logo").then((mod) => mod.Logo))
 const ThemeSwitcher = dynamic(() => import("@/components/themes/theme-switcher").then((mod) => mod.ThemeSwitcher))
@@ -28,15 +28,17 @@ function Navbar() {
 
   return (
     <nav className={classNames({
-      "flex flex-row items-center justify-between md:justify-around md:px-0 px-10 py-8 border-b-2": true,
-      "border-zinc-400 dark:border-zinc-600": true,
+      "flex flex-row items-center justify-between md:justify-around": true,
+      "border-zinc-400 dark:border-zinc-600 border-b-2": true,
+      "px-2 xs:px-6 sm:px-10 py-8": true,
     })}>
       <Link href="/">
         <Logo />
       </Link>
 
+
       <div className={classNames({
-        "hidden md:flex flex-row items-center justify-center gap-6": true,
+        "hidden lg:flex flex-row items-center justify-center gap-6": true,
         "": true,
       })}>
         {authStatus === "unauthenticated" ? (
@@ -69,17 +71,81 @@ function Navbar() {
             Generate Password
           </Button>
         </Link>
-
-        <ThemeSwitcher />
       </div>
 
-      <Sheet>
-        <SheetTrigger asChild>
-          <Menu className={classNames({
-            "flex md:hidden": true,
-          })} />
-        </SheetTrigger>
-      </Sheet>
+
+      <div className={classNames({
+        "flex flex-row items-center justify-center gap-x-1 xs:gap-x-5": true,
+      })}>
+        <ThemeSwitcher />
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <Menu className={classNames({
+              "flex lg:hidden": true,
+              "scale-75 xs:scale-100": true,
+            })} />
+          </SheetTrigger>
+
+          <SheetContent className={classNames({
+            "w-[90vw] sm:w-[60vw]": true,
+          })}>
+            <SheetHeader>
+              <SheetTitle className={classNames({
+                "mb-10": true,
+                "text-2xl text-left font-bold": true,
+              })}>
+                {userDetails ? (
+                  <>{userDetails.name}</>
+                ) : (
+                  <>Welcome to Decrypt</>
+                )}
+              </SheetTitle>
+            </SheetHeader>
+
+            <div className={classNames({
+              "flex flex-col gap-8 items-start justify-center": true,
+            })}>
+              {authStatus === "unauthenticated" ? (
+                <>
+                  <SheetClose asChild>
+                    <Link href={`/sign-in`}>
+                      <Button variant={pathName === "/sign-in" ? "default" : "secondary"}>
+                        Sign In
+                      </Button>
+                    </Link>
+                  </SheetClose>
+                </>
+              ) : (
+                <>
+                  <Avatar>
+                    <AvatarFallback>{userDetails?.name?.charAt(0).toUpperCase()}</AvatarFallback>
+                    <AvatarImage src={userDetails?.image || ""} />
+                  </Avatar>
+
+                  <SignOutButton />
+                </>
+              )}
+
+              <SheetClose asChild>
+                <Link href={`/dashboard`}>
+                  <Button variant={pathName.startsWith("/dashboard") ? "default" : "secondary"}>
+                    Dashboard
+                  </Button>
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Link href={`/generate-password`}>
+                  <Button variant={pathName === "/generate-password" ? "default" : "secondary"}>
+                    Generate Password
+                  </Button>
+                </Link>
+              </SheetClose>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </nav>
   )
 }

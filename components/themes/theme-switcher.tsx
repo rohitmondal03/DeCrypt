@@ -5,6 +5,7 @@ import { useTheme } from "next-themes"
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
 
 import { Button } from "@/components/ui/button";
+import classNames from "classnames";
 
 const DropdownMenu = dynamic(() => import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenu))
 const DropdownMenuContent = dynamic(() => import("@/components/ui/dropdown-menu").then((mod) => mod.DropdownMenuContent))
@@ -18,7 +19,14 @@ export function ThemeSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="border-2 border-zinc-500">
+        <Button
+          variant="outline"
+          size="icon"
+          className={classNames({
+            "border-2 border-zinc-500": true,
+            "scale-75 xs:scale-100": true,
+          })}
+        >
           <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         </Button>

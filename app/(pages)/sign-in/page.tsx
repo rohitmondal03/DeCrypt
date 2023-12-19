@@ -15,7 +15,9 @@ export default async function SignInPage() {
 
   return (
     <section className={classNames({
-      'flex flex-row items-center justify-around h-[80vh]': true,
+      'flex flex-row items-center justify-around': true,
+      "px-1 sm:px-6 md:px-20 py-16": true,
+      "h-fit lg:h-[80vh]": true,
     })}>
       <Image
         src={"/assets/login.svg"}

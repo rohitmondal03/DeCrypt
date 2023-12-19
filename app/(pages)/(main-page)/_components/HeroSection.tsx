@@ -7,11 +7,12 @@ import { monsterrat } from "@/lib/fonts";
 export default function HeroSection() {
   return (
     <div className={classNames({
-      'flex flex-col xl:flex-row items-center justify-between gap-20 sm:gap-16 md:gap-24 lg:gap-32 h-[80vh]': true,
+      'flex flex-col xl:flex-row items-center justify-between gap-20 sm:gap-16 md:gap-24 lg:gap-32 ': true,
+      "lg:h-[80vh]": true,
     })}>
-      <div className="text-center space-y-10 md:space-y-14">
+      <div className="text-center space-y-6 md:space-y-14">
         <h1 className={classNames(`${monsterrat.className}`, {
-          "text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-500 dark:text-zinc-300": true,
+          "text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-500 dark:text-zinc-300": true,
           "sm:leading-normal lg:leading-tight": true,
         })}>
           Welcome to &nbsp;
